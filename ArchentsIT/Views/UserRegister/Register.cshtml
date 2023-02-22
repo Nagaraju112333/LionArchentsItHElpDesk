@@ -1,0 +1,124 @@
+﻿@model  ArchentsIT.Models.Employee
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/ArchentsIT.cshtml";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>UserRegister</title>
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .form-group {
+            margin: 20px;
+        }
+
+        p {
+            font-size: 3vw;
+        }
+
+        .main {
+            margin-left: 250px;
+            margin-top: 150px;
+        }
+
+        #btn12 {
+            background-color: black;
+            border-radius: 20px;
+        }
+
+        #CreateButton {
+            margin-left: 23px;
+        }
+
+        #homeAndCreateLink {
+            margin-left: 5px;
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="">
+        @if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
+        {
+            if (ViewBag.Message != null)
+            {
+                <div class="alert alert-success">
+                    <strong>Success!</strong>@ViewBag.Message
+                </div>
+            }
+        }
+        <div id="homeAndCreateLink" style=" background-color:#EFEFEF;">
+            @Html.ActionLink("Home/", "Home", "Home", new { style = "text-decoration:none; color:#686363" })
+            @Html.ActionLink("Create An Account", "Home", "Home", new { style = "text-decoration:none; color:#686363" })
+
+        </div>
+        <p style="margin-left:330px; margin-top:50px;">Create an Account</p>
+        <div class="main">
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label " })
+                        <div class="form-group-lg">
+                            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control w-50 " } })
+                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label " })
+                        <div class="form-group-lg  ">
+                            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control w-50" } })
+                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label " })
+                        <div class="form-group-lg ">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control w-50" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label " })
+                        <div class="form-group-lg ">
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control w-50", type = "password" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Phone_Number, htmlAttributes: new { @class = "control-label " })
+                        <div class="form-group-lg">
+                            @Html.EditorFor(model => model.Phone_Number, new { htmlAttributes = new { @class = "form-control w-50" } })
+                            @Html.ValidationMessageFor(model => model.Phone_Number, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-success" value="Create an Account" id="btn12" />
+                    </div>
+                </div>
+            }
+
+            <div id="CreateButton">
+                @Html.ActionLink("Already a Member? Sign in here", "Login", "Account", new { style = "text-decoration:none; color:black" })
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
