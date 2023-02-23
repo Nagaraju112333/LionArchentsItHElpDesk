@@ -7,6 +7,8 @@
       <Diagram DiagramId="d9867c1637704a7da16bfb367f9241c4" Name="Diagram1">
         <EntityTypeShape EntityType="ArchentsITModel.Employee" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ArchentsITModel.UserRegister" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArchentsITModel.RaiseTicket" Width="1.5" PointX="5" PointY="1.125" />
+        <AssociationConnector Association="ArchentsITModel.FK__RaiseTick__Emplo__36B12243" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

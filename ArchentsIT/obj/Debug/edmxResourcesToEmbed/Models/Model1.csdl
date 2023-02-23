@@ -25,9 +25,42 @@
     <Property Name="Phone_Number" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="Firstregister" Type="Int32" />
     <Property Name="registercount" Type="Int32" />
+    <Property Name="TeamID" Type="Int32" />
+    <NavigationProperty Name="RaiseTickets" Relationship="ArchentsITModel.FK__RaiseTick__Emplo__36B12243" FromRole="UserRegister" ToRole="RaiseTicket" />
+    <Property Name="Otp" Type="Int32" />
   </EntityType>
   <EntityContainer Name="ArchentsITEntities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Employees" EntityType="Self.Employee" />
     <EntitySet Name="UserRegisters" EntityType="Self.UserRegister" />
+    <EntitySet Name="RaiseTickets" EntityType="ArchentsITModel.RaiseTicket" />
+    <AssociationSet Name="FK__RaiseTick__Emplo__36B12243" Association="ArchentsITModel.FK__RaiseTick__Emplo__36B12243">
+      <End Role="UserRegister" EntitySet="UserRegisters" />
+      <End Role="RaiseTicket" EntitySet="RaiseTickets" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="RaiseTicket">
+    <Key>
+      <PropertyRef Name="Sno" />
+    </Key>
+    <Property Name="Sno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TicketNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Assigned_Person" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Query" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmployeeID" Type="Guid" />
+    <NavigationProperty Name="UserRegister" Relationship="ArchentsITModel.FK__RaiseTick__Emplo__36B12243" FromRole="RaiseTicket" ToRole="UserRegister" />
+  </EntityType>
+  <Association Name="FK__RaiseTick__Emplo__36B12243">
+    <End Type="ArchentsITModel.UserRegister" Role="UserRegister" Multiplicity="0..1" />
+    <End Type="ArchentsITModel.RaiseTicket" Role="RaiseTicket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegister">
+        <PropertyRef Name="EmpID" />
+      </Principal>
+      <Dependent Role="RaiseTicket">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

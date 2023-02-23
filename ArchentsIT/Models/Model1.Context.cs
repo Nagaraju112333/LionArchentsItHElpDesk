@@ -27,5 +27,6 @@ namespace ArchentsIT.Models
     
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<UserRegister> UserRegisters { get; set; }
+        public virtual DbSet<RaiseTicket> RaiseTickets { get; set; }
     }
 }

@@ -3,9 +3,6 @@
     ViewBag.Title = "UserRegister";
     Layout = "~/Views/Shared/ArchentsIT.cshtml";
 }
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +16,7 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <style>
         .form-group {
             margin: 20px;
@@ -29,7 +27,7 @@
         }
 
         .main {
-            margin-left:450px;
+            margin-left: 450px;
             margin-top: 25px;
         }
 
@@ -54,18 +52,23 @@
         #FirstName {
             color: black;
         }
-        #FirstName{
-            border-color:black;
+
+        #FirstName {
+            border-color: black;
         }
+
         #LastName {
             border-color: black;
         }
+
         #Email {
             border-color: black;
         }
+
         #Designation {
             border-color: black;
         }
+
         #Phone_Number {
             border-color: black;
         }
@@ -86,7 +89,8 @@
                 if (ViewBag.Message != null)
                 {
                     <div class="alert alert-success">
-                        <strong>Success!</strong>@ViewBag.Message
+                          <strong>Success!</strong>@ViewBag.Message
+                      @*  swal("Good job!", "You clicked the button!", "success");*@
                     </div>
                 }
             }

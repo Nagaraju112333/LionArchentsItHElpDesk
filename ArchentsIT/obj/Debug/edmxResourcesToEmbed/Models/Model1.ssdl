@@ -11,6 +11,18 @@
     <Property Name="Designation" Type="nvarchar" MaxLength="50" />
     <Property Name="TeamId" Type="int" />
   </EntityType>
+  <EntityType Name="RaiseTicket">
+    <Key>
+      <PropertyRef Name="Sno" />
+    </Key>
+    <Property Name="Sno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TicketNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="Assigned_Person" Type="nvarchar" MaxLength="50" />
+    <Property Name="Query" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmployeeID" Type="uniqueidentifier" />
+  </EntityType>
   <EntityType Name="UserRegister">
     <Key>
       <PropertyRef Name="EmpID" />
@@ -25,9 +37,28 @@
     <Property Name="Phone_Number" Type="nvarchar" MaxLength="20" />
     <Property Name="Firstregister" Type="int" />
     <Property Name="registercount" Type="int" />
+    <Property Name="TeamID" Type="int" />
+    <Property Name="Otp" Type="int" />
   </EntityType>
+  <Association Name="FK__RaiseTick__Emplo__36B12243">
+    <End Role="UserRegister" Type="Self.UserRegister" Multiplicity="0..1" />
+    <End Role="RaiseTicket" Type="Self.RaiseTicket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegister">
+        <PropertyRef Name="EmpID" />
+      </Principal>
+      <Dependent Role="RaiseTicket">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="ArchentsITModelStoreContainer">
     <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RaiseTicket" EntityType="Self.RaiseTicket" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserRegister" EntityType="Self.UserRegister" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__RaiseTick__Emplo__36B12243" Association="Self.FK__RaiseTick__Emplo__36B12243">
+      <End Role="UserRegister" EntitySet="UserRegister" />
+      <End Role="RaiseTicket" EntitySet="RaiseTicket" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

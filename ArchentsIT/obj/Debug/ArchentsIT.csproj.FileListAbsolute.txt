@@ -88,3 +88,7 @@ D:\New folder (2)\ArchentsIT\ArchentsIT\bin\Twilio.dll
 D:\New folder (2)\ArchentsIT\ArchentsIT\bin\Microsoft.IdentityModel.Tokens.xml
 D:\New folder (2)\ArchentsIT\ArchentsIT\bin\System.IdentityModel.Tokens.Jwt.xml
 D:\New folder (2)\ArchentsIT\ArchentsIT\bin\Twilio.xml
+D:\New folder (2)\ArchentsIT\ArchentsIT\bin\Microsoft.AspNet.Identity.Core.dll
+D:\New folder (2)\ArchentsIT\ArchentsIT\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\New folder (2)\ArchentsIT\ArchentsIT\bin\Microsoft.AspNet.Identity.Core.xml
+D:\New folder (2)\ArchentsIT\ArchentsIT\bin\Microsoft.AspNet.Identity.EntityFramework.xml

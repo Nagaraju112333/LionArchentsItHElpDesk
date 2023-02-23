@@ -13,7 +13,8 @@ namespace ArchentsIT.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please Enter EmailId")]
         public string EmailID { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please Enter Password")]
-        [DataType(DataType.Password)]
+       /* [DataType(DataType.Password)]*/
         public string Password { get; set; }
+        public string Name { get; set; }
     }
 }

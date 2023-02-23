@@ -16,6 +16,8 @@
     <EntitySetMapping Name="UserRegisters">
       <EntityTypeMapping TypeName="ArchentsITModel.UserRegister">
         <MappingFragment StoreEntitySet="UserRegister">
+          <ScalarProperty Name="Otp" ColumnName="Otp" />
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
           <ScalarProperty Name="EmpID" ColumnName="EmpID" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -26,6 +28,19 @@
           <ScalarProperty Name="Phone_Number" ColumnName="Phone_Number" />
           <ScalarProperty Name="Firstregister" ColumnName="Firstregister" />
           <ScalarProperty Name="registercount" ColumnName="registercount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RaiseTickets">
+      <EntityTypeMapping TypeName="ArchentsITModel.RaiseTicket">
+        <MappingFragment StoreEntitySet="RaiseTicket">
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="Query" ColumnName="Query" />
+          <ScalarProperty Name="Assigned_Person" ColumnName="Assigned_Person" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="TicketNo" ColumnName="TicketNo" />
+          <ScalarProperty Name="Sno" ColumnName="Sno" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
