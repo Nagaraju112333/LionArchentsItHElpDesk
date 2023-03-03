@@ -1,0 +1,200 @@
+﻿@model ArchentsIT.Models.RaiseTicket
+@{
+    ViewBag.Title = "Get";
+    Layout = "~/Views/Shared/ArchentsIT.cshtml";
+}
+<html>
+<head>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <style>
+        .maindiv {
+            margin-left: 500px;
+        }
+
+        .mainmina {
+            margin-top: 100px;
+        }
+
+        #TicketNo {
+            border-color: black;
+        }
+
+        #Date {
+            border-color: black;
+        }
+
+        #Status {
+            border-color: black;
+        }
+
+        #Assigned_Person {
+            border-color: black;
+        }
+
+        #Query {
+            border-color: black;
+        }
+
+        #EmployeeID {
+            border-color: black;
+        }
+
+        #fname {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="mainmina">
+        <div>
+            <h3 style="margin-left:500px;">Add New Ticket</h3>
+        </div>
+        <div class="maindiv">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                <div class="form-group">
+                    <label id="fname">TicketNo</label>
+                    <div class="form-group-lg  ">
+                        <input type="text" value="@Model.TicketNo" class="form-control w-50" name="TicketNo" readonly />
+                    </div>
+                </div>
+
+                <div class="form-group">
+
+                    <label id="fname">Status</label>
+                    <div class="form-group-lg ">
+                        @*  <input type="text" value="@Model.Status" class="form-control w-50" name="Status" />*@
+                        @Html.DropDownListFor(m => m.Status, ViewBag.CatList1 as SelectList, new { @class = "form-control w-50", @Model.Query })
+
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <label id="fname">Commant</label>
+                    <div class="form-group-lg ">
+                        @*<input type="text" value="" class="form-control w-50" name="Status" />*@
+                        <textarea value="" class="form-control w-50" name="Commant"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+
+                    <label id="fname">Query</label>
+                    <div class="form-group-lg">
+                        @*  <input type="text" value="@Model.Query" class="form-control w-25" name="Sslary" />*@
+                        <textarea value="" class="form-control w-50" name="Query" readonly>@Model.Query</textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <label id="fname">EmployeeId</label>
+                    <div class="form-group-lg">
+                        <input type="text" value="@Model.EmployeeId" class="form-control w-50" name="EmployeeId" readonly />
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <label id="fname">Assigned_Person</label>
+                    <div class="form-group-lg">
+                        <input type="text" value="@Model.Assigned_Person" class="form-control w-50" name="Assigned_Person" readonly />
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <label id="fname">Issue_Type</label>
+                    <div class="form-group-lg">
+                        <input type="text" value="@Model.Issue_Type" class="form-control w-50" name="Issue_Type" readonly />
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <label id="fname">Last Update</label>
+                    <div class="form-group-lg">
+                        <input type="text" value="@ViewBag.Updatedate" class="form-control w-50" name="UpdateDate" readonly />
+                    </div>
+                </div>
+
+                <div style="display:flex;">
+                    <div class="form-group" style="margin-top:20px;">
+                        <input type="submit" class="btn btn-success" value="Save" id="btn12" style="border-radius:10px;" />
+                    </div>
+                    <div style="margin-top:20px; margin-left:400px;">
+                        <a href="~/Admin/Getallemployees" class="btn btn-danger" style="border-radius:10px;">Back</a>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+    @*  <div>
+            @Html.BeginForm(){
+            <table>
+                <tr>
+                    <td>
+                        <label>Employee ID</label>
+                    </td>
+                    <td>
+                        <input type="text" value="@Model.TicketNo" class="form-control" name="Id" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Employee  Name</label>
+                    </td>
+                    <td>
+                        <input type="text" value="@Model.Status" class="form-control" name="Name" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Employee Designation</label>
+                    </td>
+                    <td>
+                        <input type="text" value="@Model.Assigned_Person" class="form-control" name="Designation" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Employee Salary</label>
+                    </td>
+                    <td>
+                        <input type="text" value="@Model.Query" class="form-control" name="Sslary" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>UserName</label>
+                    </td>
+                    <td>
+                        <input type="text" value="@Model.EmployeeId" class="form-control" name="Sslary" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Password</label>
+                    </td>
+                    <td>
+                        <input type="text" value="@Model.Issue_Type" class="form-control" name="Sslary" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value="Save" class="btn btn-success" />
+                    </td>
+                </tr>
+
+            </table>
+
+            }
+        </div>*@
+</body>
+</html>
+

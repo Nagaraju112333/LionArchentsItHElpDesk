@@ -3,101 +3,157 @@
     ViewBag.Title = "GetEmployeeRecords";
     Layout = "~/Views/Shared/ArchentsIT.cshtml";
 }
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<link href="~/Content/bootstrap.css" rel="stylesheet" />
 
-<link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
-<link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/DataTables/datatables.css">
 
-<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
-<style>
-    #raisebtn {
-        float: right;
-        margin-top: 50px;
-        margin-right: 50px;
-        border-radius: 10px;
-    }
+    <script type="text/javascript" charset="utf8" src="/DataTables/datatables.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
 
-    #norecord {
-        margin-left: 10px;
-    }
-    .main{
-        margin-left:10px;
-        margin-right:10px;
-    }
-    #viewbag{
-        margin-top:20px;
-    }
-    #tableid{
-       justify-content:space-between;
-    }
-</style>
-@*<input type="button" class=" btn btn-success" id="raisebtn" value="Raise IT" />
-*@<br />
-<br />
-<br />
-<br />
-<hr />
-<div class="main">
-    @*<table id="demoGrid" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
-        <thead>
-            <tr>
-                <th>Sno</th>
-                <th>TicketNo</th>
-                <th>Date</th>
-                <th>Status</th>
-                <th>Assigned_Person</th>
-                <th>Query</th>
-            </tr>
-        </thead>
-    </table>
-    <p id="norecord">@ViewBag.message</p>*@
-   <div>
-       <table class="table table-striped  dt-responsive " id="tableid">
-           <thead>
-               <tr>
-                   <th>
-                       Sno
-                   </th>
-                   <th>TicketNo</th>
-                   <th>Date</th>
-                   <th>Status</th>
-                   <th>Assigned_Person</th>
-                   <th>Query</th>
-               </tr>
-           </thead>
-           <tbody>
-               @if (ViewBag.name != null)
-               {
-                 <tr>
-                     <td>
-                         <p id="viewbag">@ViewBag.name</p>
-                     </td>
-                 </tr>  
-               }
-               else
-               {
-                   foreach (var c in Model)
-                   {
-                       <tr>
-                           <td>@Html.DisplayFor(model=>c.Sno)</td>
-                           <td>@Html.DisplayFor(model=>c.TicketNo)</td>
-                           <td>@Html.DisplayFor(model=>c.Date)</td>
-                           <td>@Html.DisplayFor(model=>c.Status)</td>
-                           <td>@Html.DisplayFor(model=>c.Assigned_Person)</td>
-                           <td>@Html.DisplayFor(model=>c.Query)</td>
-                       </tr>
-                   }
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
 
-               }
+    <script src="https://cdn.datatables.net/v/dt/dt-1.13.2/datatables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js">
+    </script>
+    <script src="~/js/fancyTable.js">
+    </script>
+    <link href="~/StyleSheets/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="~/js/jquery.min.js"></script>
+    <link href="~/StyleSheets/basic.css" rel="stylesheet" />
+    <link href="~/StyleSheets/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/js/toaster.js"></script>
+    <script src="~/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="~/js/bootstrap.min.js" type="text/javascript"></script>
+    @*<script src="~/js/HotelLookUp.js"></script>*@
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <style>
+       /* .container1 {
+            margin-left: 15px;
+            margin-right: 15px;
+        }
+        #hotelsTable{
+            margin-left:10px;
+            margin-right:10px;
+        }*/
+        .maindiv{
+            margin-left:20px;
+            margin-right:20px;
+            margin-top:3px;
+        }
+        .maindiv a{
+            border-radius:15px;
+        }
+        table thead{
+            justify-content:space-evenly;
+        }
+        #addnewbtn{
+            margin-bottom:-20px;
+         
+        }
+    </style>
+</head>
+<body>
+    @*<div>
+            <h1>@ViewBag.message</h1>
+        </div>*@
+    <div>
+        @if (TempData["ItNotAvailable"] != null)
+        {
+            <p style="text-align:center;color:red">@TempData["ItNotAvailable"]</p>
+        }
+    </div>
+    <div class="maindiv">
 
-           </tbody>
-       </table>
-   </div>
-</div>
+        <a href="~/raiseTicket/AddnewTicket" class="btn btn-link" style="float:right;margin-right:65px;" id="addnewbtn">AddNewTicket</a>
+        <table id="hotelsTable" class="tablesorter table hoteltable-bordered sampleTable" style="width: 100%">
+            <thead>
+                <tr>
+                    <th>
+                        Sno
+                    </th>
+                   @* <th>
+                        EmployeeID
+                    </th>*@
+                    <th>
+                        TicketNo
+                    </th>
+                    <th>
+                        Date
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    <th>
+                        Assigned_Person
+                    </th>
+                    <th>
+                        Query
+                    </th>
+                    <th>
+                       priority
+                    </th>
+                    <th>
+                        Comment
+                    </th>
+
+                </tr>
+            </thead>
+            @foreach (var d in Model)
+            {
+                <tr>
+
+                    <td>@d.Sno</td>
+                    @* <td>@d.EmployeeId</td>*@
+                    <td>@d.TicketNo</td>
+                    <td>@d.Date</td>
+                    <td>
+                        @if (@d.Status == "Open")
+                        {
+                            <p style="color:red">@d.Status</p>
+                        }
+                        else if (@d.Status == "Inprogress")
+                        {
+                            <p style="color:blue">@d.Status</p>
+                        }
+                        else if (@d.Status == "Completed")
+                        {
+                            <p style="color:green">@d.Status</p>
+                        }
+                        else if (@d.Status == "Pending")
+                        {
+                            <p style="color:black">@d.Status</p>
+                        }
+                        else
+                        {
+                            <p style="color:orange">@d.Status</p>
+                        }
+
+                    </td>
+
+                    <td>@d.Assigned_Person</td>
+                    <td>@d.Query</td>
+                    <td>@d.priarity</td>
+                    <td>@d.Commant</td>
+
+                </tr>
+            }
+        </table>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#hotelsTable').DataTable({
+                "pagingType": "full_numbers",
+                "dom": "lifrtip"
+            });
+        });
+    </script>
+</body>
+
+</html>
 

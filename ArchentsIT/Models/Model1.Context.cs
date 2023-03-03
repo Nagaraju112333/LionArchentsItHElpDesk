@@ -13,10 +13,10 @@ namespace ArchentsIT.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ArchentsITEntities1 : DbContext
+    public partial class ArchentsITEntities5 : DbContext
     {
-        public ArchentsITEntities1()
-            : base("name=ArchentsITEntities1")
+        public ArchentsITEntities5()
+            : base("name=ArchentsITEntities5")
         {
         }
     
@@ -26,7 +26,7 @@ namespace ArchentsIT.Models
         }
     
         public virtual DbSet<Employee> Employees { get; set; }
-        public virtual DbSet<UserRegister> UserRegisters { get; set; }
         public virtual DbSet<RaiseTicket> RaiseTickets { get; set; }
+        public virtual DbSet<UserRegister> UserRegisters { get; set; }
     }
 }

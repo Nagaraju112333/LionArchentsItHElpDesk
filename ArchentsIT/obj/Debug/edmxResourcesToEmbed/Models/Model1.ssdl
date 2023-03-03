@@ -21,13 +21,21 @@
     <Property Name="Status" Type="nvarchar" MaxLength="50" />
     <Property Name="Assigned_Person" Type="nvarchar" MaxLength="50" />
     <Property Name="Query" Type="nvarchar" MaxLength="50" />
-    <Property Name="EmployeeID" Type="uniqueidentifier" />
+    <Property Name="EmployeeId" Type="varchar" MaxLength="54" />
+    <Property Name="Issue_Type" Type="nvarchar" MaxLength="50" />
+    <Property Name="Status1" Type="nvarchar" MaxLength="50" />
+    <Property Name="priarity" Type="nvarchar" MaxLength="50" />
+    <Property Name="Commant" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmpName" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmpEmail" Type="nvarchar" MaxLength="50" />
+    <Property Name="UpdateDate" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="UserRegister">
     <Key>
-      <PropertyRef Name="EmpID" />
+      <PropertyRef Name="Sno" />
     </Key>
-    <Property Name="EmpID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Sno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmpID" Type="varchar" MaxLength="54" StoreGeneratedPattern="Computed" />
     <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -39,26 +47,11 @@
     <Property Name="registercount" Type="int" />
     <Property Name="TeamID" Type="int" />
     <Property Name="Otp" Type="int" />
+    <Property Name="RoleType" Type="int" />
   </EntityType>
-  <Association Name="FK__RaiseTick__Emplo__36B12243">
-    <End Role="UserRegister" Type="Self.UserRegister" Multiplicity="0..1" />
-    <End Role="RaiseTicket" Type="Self.RaiseTicket" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="UserRegister">
-        <PropertyRef Name="EmpID" />
-      </Principal>
-      <Dependent Role="RaiseTicket">
-        <PropertyRef Name="EmployeeID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="ArchentsITModelStoreContainer">
     <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RaiseTicket" EntityType="Self.RaiseTicket" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserRegister" EntityType="Self.UserRegister" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__RaiseTick__Emplo__36B12243" Association="Self.FK__RaiseTick__Emplo__36B12243">
-      <End Role="UserRegister" EntitySet="UserRegister" />
-      <End Role="RaiseTicket" EntitySet="RaiseTicket" />
-    </AssociationSet>
   </EntityContainer>
 </Schema>

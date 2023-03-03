@@ -11,29 +11,27 @@ namespace ArchentsIT.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class UserRegister
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public UserRegister()
-        {
-            this.RaiseTickets = new HashSet<RaiseTicket>();
-        }
-    
-        public System.Guid EmpID { get; set; }
+        public int Sno { get; set; }
+        public string EmpID { get; set; }
+        [Required (ErrorMessage ="Enter FirstName")]
         public string FirstName { get; set; }
+        [Required (ErrorMessage ="Enter LastName")]
         public string LastName { get; set; }
+        [Required (ErrorMessage ="Enter Email")]
         public string Email { get; set; }
+        [Required(ErrorMessage = "Enter Designation")]
         public string Designation { get; set; }
         public string Password { get; set; }
         public string ResetpasswordCode { get; set; }
+        [Required(ErrorMessage ="Enter PhoneNumber")]
         public string Phone_Number { get; set; }
         public Nullable<int> Firstregister { get; set; }
         public Nullable<int> registercount { get; set; }
         public Nullable<int> TeamID { get; set; }
         public Nullable<int> Otp { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RaiseTicket> RaiseTickets { get; set; }
+        public Nullable<int> RoleType { get; set; }
     }
 }

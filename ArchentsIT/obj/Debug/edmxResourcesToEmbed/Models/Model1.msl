@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ArchentsITModelStoreContainer" CdmEntityContainer="ArchentsITEntities1">
+  <EntityContainerMapping StorageEntityContainer="ArchentsITModelStoreContainer" CdmEntityContainer="ArchentsITEntities5">
     <EntitySetMapping Name="Employees">
       <EntityTypeMapping TypeName="ArchentsITModel.Employee">
         <MappingFragment StoreEntitySet="Employees">
@@ -13,11 +13,31 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="RaiseTickets">
+      <EntityTypeMapping TypeName="ArchentsITModel.RaiseTicket">
+        <MappingFragment StoreEntitySet="RaiseTicket">
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="EmpEmail" ColumnName="EmpEmail" />
+          <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+          <ScalarProperty Name="Commant" ColumnName="Commant" />
+          <ScalarProperty Name="priarity" ColumnName="priarity" />
+          <ScalarProperty Name="Status1" ColumnName="Status1" />
+          <ScalarProperty Name="Issue_Type" ColumnName="Issue_Type" />
+          <ScalarProperty Name="Sno" ColumnName="Sno" />
+          <ScalarProperty Name="TicketNo" ColumnName="TicketNo" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Assigned_Person" ColumnName="Assigned_Person" />
+          <ScalarProperty Name="Query" ColumnName="Query" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="UserRegisters">
       <EntityTypeMapping TypeName="ArchentsITModel.UserRegister">
         <MappingFragment StoreEntitySet="UserRegister">
-          <ScalarProperty Name="Otp" ColumnName="Otp" />
-          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="RoleType" ColumnName="RoleType" />
+          <ScalarProperty Name="Sno" ColumnName="Sno" />
           <ScalarProperty Name="EmpID" ColumnName="EmpID" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -28,19 +48,8 @@
           <ScalarProperty Name="Phone_Number" ColumnName="Phone_Number" />
           <ScalarProperty Name="Firstregister" ColumnName="Firstregister" />
           <ScalarProperty Name="registercount" ColumnName="registercount" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="RaiseTickets">
-      <EntityTypeMapping TypeName="ArchentsITModel.RaiseTicket">
-        <MappingFragment StoreEntitySet="RaiseTicket">
-          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-          <ScalarProperty Name="Query" ColumnName="Query" />
-          <ScalarProperty Name="Assigned_Person" ColumnName="Assigned_Person" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
-          <ScalarProperty Name="Date" ColumnName="Date" />
-          <ScalarProperty Name="TicketNo" ColumnName="TicketNo" />
-          <ScalarProperty Name="Sno" ColumnName="Sno" />
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="Otp" ColumnName="Otp" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

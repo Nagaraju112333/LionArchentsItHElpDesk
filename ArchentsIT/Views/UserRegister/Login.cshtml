@@ -1,11 +1,9 @@
-﻿@model  ArchentsIT.Models.UserLogin
+﻿@*@model  ArchentsIT.Models.UserLogin*@
+@model ArchentsIT.Models.UserLogin
 @{
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/ArchentsIT.cshtml";
 }
-
-
-
 
 <!DOCTYPE html>
 
@@ -17,11 +15,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -33,102 +27,141 @@
             padding: 0;
         }
 
-        .form-horizontal {
+        /*.form-horizontal {
             margin-left: 650px;
             margin-top: 100px;
-        }
+        }*/
 
 
         #btn12 {
-            margin-top: 10px;
-            border-radius: 20px;
             background-color: black;
         }
-
+       body{
+          color:#000000;
+       }
         p {
             font-size: 3vw;
         }
-
-        .aaa h5 {
-            margin: 5px;
+       
+        #passwordlabel{
+            color:black;
         }
-
-        #homeAndCreateLink {
-            margin-left: 5px;
-            margin-bottom: 50px;
-        }
-
         #p2 {
             margin-bottom: 40px;
+            color: black;
         }
-
+        #emiallable{
+            color:black;
+        }
         #EmailID {
             border-color: black;
+            color: black;
+        }
+        #Email{
+            border-color:black;
+           
         }
 
         #Password {
             border-color: black;
         }
+      /*  #emiallable{
+            font-size:1.5em;
+        }
+        #passwordlabel{
+            font-size:1.5em;*/
+        }
+       /* .aaa h5{
+            font-size:2em;
+        }
+        #btn12{
+            font-size:1.5em;
+        }*/
+        .form-horizontal{
+            padding:20px
+        }
+        .second {
+            margin-top: 60px;
+            width: 490px;
+        }
+        #TwoDiv {
+            margin-top: 70px;
+            color: rgb(28, 28, 28)
+        }
+        #emiallable{
+            color:#1c1c1c;
+        }
+        #ithelpdeskid{
+            margin-top:-40px;
+            margin-left:5px;
+        }
     </style>
 </head>
 <body>
-    <div class="">
-        <div id="homeAndCreateLink" style=" background-color:#EFEFEF;">
-
+    <div class="" style="display: flex;" id="TwoDiv">
+      
+        <div class="first">
+           <img src="~/Images/IT Help Desk (1).png" width="850" height="600" style="margin-left:10px;" id="ithelpdeskid" />
         </div>
+        <div class="second">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
 
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
+                <div class="form-horizontal card p-3">
 
-    <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @if (Session["Successfull"] != "")
+                    {
+                        <div class="text-success">@Session["Successfull"]</div>
+                    }
 
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @if (ViewBag.Successfull != "")
-        {
-            <div class="text-success">@ViewBag.Successfull</div>
-        }
+                    @if (TempData["message"] != null)
+                    {
+                        <div class="alert alert-success">
+                            <strong>Success!</strong>@TempData["message"];
+                            @*  <script>swal("Good job!", "You clicked the button!", "Success");</script>*@
+                        </div>
+                    }
+                    <h3 id="p2"> Login</h3>
+                    @if (ViewBag.Message != "")
+                    {
+                        @* <script>swal("Good job!", "You clicked the button!", "Error");</script>*@
+                        <div class="text-danger">@ViewBag.Message</div>
+                    }
+                    <div class="form-group">
+                        @*  @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label " })*@
+                        <label id="emiallable">Email</label>
+                        <div class="form-group-lg ">
+                            @Html.EditorFor(model => model.EmailID, new { htmlAttributes = new { @class = "form-control w-100", placeholder = "Email" } })
+                            @Html.ValidationMessageFor(model => model.EmailID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @*  @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label " })*@
+                        <label id="passwordlabel">Password</label>
+                        <div class="form-group-lg">
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control w-100", @type = "password", placeholder = "Password", AutoCompleteType = "current-password" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="text-end pt-2">
+                            @Html.ActionLink("Forgot your password?", "ForgotPassword", "UserRegister", new { style = "text-decoration:none; color:black" })
+                        </div>
+                    </div>
 
-        @if (TempData["message"] != null)
-        {
-            <div class="alert alert-success">
-                 <strong>Success!</strong>@TempData["message"];
-              @*  <script>swal("Good job!", "You clicked the button!", "Success");</script>*@
-            </div>
-        }
-        <p id="p2"> Login</p>
-        @if (ViewBag.Message != "")
-        {
-           @* <script>swal("Good job!", "You clicked the button!", "Error");</script>*@
-             <div class="text-danger">@ViewBag.Message</div>
-        }
-        <div class="form-group">
-
-            @Html.LabelFor(model => model.EmailID, htmlAttributes: new { @class = "control-label " })
-            <div class="form-group-lg ">
-                @Html.EditorFor(model => model.EmailID, new { htmlAttributes = new { @class = "form-control w-50", placeholder = "Email" } })
-                @Html.ValidationMessageFor(model => model.EmailID, "", new { @class = "text-danger" })
-            </div>
+                    <div class="form-group d-flex justify-content-between">
+                        <div class="aaa">
+                            <a>
+                                @Html.ActionLink("Don't have a account? Register here", "UserRegister", "UserRegister", new { style = "text-decoration:none; color:black" })
+                            </a>
+                        </div>
+                        <div>
+                            <input type="submit" class="btn btn-success" value="Sign In" id="btn12" />
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label " })
-            <div class="form-group-lg ">
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control w-50", @type = "password", placeholder = "Password", AutoCompleteType = "current-password" } })
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <input type="submit" class="btn btn-success" value="Sign In" id="btn12" />
-            <div class="aaa" style="display:flex;">
-                <h5> @Html.ActionLink("Forgot your password?", "ForgotPassword", "UserRegister", new { style = "text-decoration:none; color:black" })</h5>
-                <h5>  @Html.ActionLink("Not a member?", "UserRegister", "Account", new { style = "text-decoration:none; color:black" })</h5>
-                <h5>@Html.ActionLink("Register here", "UserRegister", "UserRegister", new { style = "text-decoration:none; color:black" })</h5>
-
-            </div>
-        </div>
-    </div>
-        }
     </div>
   
 

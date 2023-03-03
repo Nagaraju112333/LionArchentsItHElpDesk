@@ -26,13 +26,21 @@
           <Property Name="Status" Type="nvarchar" MaxLength="50" />
           <Property Name="Assigned_Person" Type="nvarchar" MaxLength="50" />
           <Property Name="Query" Type="nvarchar" MaxLength="50" />
-          <Property Name="EmployeeID" Type="uniqueidentifier" />
+          <Property Name="EmployeeId" Type="varchar" MaxLength="54" />
+          <Property Name="Issue_Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status1" Type="nvarchar" MaxLength="50" />
+          <Property Name="priarity" Type="nvarchar" MaxLength="50" />
+          <Property Name="Commant" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmpName" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmpEmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdateDate" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="UserRegister">
           <Key>
-            <PropertyRef Name="EmpID" />
+            <PropertyRef Name="Sno" />
           </Key>
-          <Property Name="EmpID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Sno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmpID" Type="varchar" MaxLength="54" StoreGeneratedPattern="Computed" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -44,27 +52,12 @@
           <Property Name="registercount" Type="int" />
           <Property Name="TeamID" Type="int" />
           <Property Name="Otp" Type="int" />
+          <Property Name="RoleType" Type="int" />
         </EntityType>
-        <Association Name="FK__RaiseTick__Emplo__36B12243">
-          <End Role="UserRegister" Type="Self.UserRegister" Multiplicity="0..1" />
-          <End Role="RaiseTicket" Type="Self.RaiseTicket" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserRegister">
-              <PropertyRef Name="EmpID" />
-            </Principal>
-            <Dependent Role="RaiseTicket">
-              <PropertyRef Name="EmployeeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="ArchentsITModelStoreContainer">
           <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RaiseTicket" EntityType="Self.RaiseTicket" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRegister" EntityType="Self.UserRegister" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__RaiseTick__Emplo__36B12243" Association="Self.FK__RaiseTick__Emplo__36B12243">
-            <End Role="UserRegister" EntitySet="UserRegister" />
-            <End Role="RaiseTicket" EntitySet="RaiseTicket" />
-          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -81,33 +74,6 @@
           <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TeamId" Type="Int32" />
         </EntityType>
-        <EntityType Name="UserRegister">
-          <Key>
-            <PropertyRef Name="EmpID" />
-          </Key>
-          <Property Name="EmpID" Type="Guid" Nullable="false" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ResetpasswordCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Phone_Number" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Firstregister" Type="Int32" />
-          <Property Name="registercount" Type="Int32" />
-          <Property Name="TeamID" Type="Int32" />
-          <NavigationProperty Name="RaiseTickets" Relationship="ArchentsITModel.FK__RaiseTick__Emplo__36B12243" FromRole="UserRegister" ToRole="RaiseTicket" />
-          <Property Name="Otp" Type="Int32" />
-        </EntityType>
-        <EntityContainer Name="ArchentsITEntities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Employees" EntityType="Self.Employee" />
-          <EntitySet Name="UserRegisters" EntityType="Self.UserRegister" />
-          <EntitySet Name="RaiseTickets" EntityType="ArchentsITModel.RaiseTicket" />
-          <AssociationSet Name="FK__RaiseTick__Emplo__36B12243" Association="ArchentsITModel.FK__RaiseTick__Emplo__36B12243">
-            <End Role="UserRegister" EntitySet="UserRegisters" />
-            <End Role="RaiseTicket" EntitySet="RaiseTickets" />
-          </AssociationSet>
-        </EntityContainer>
         <EntityType Name="RaiseTicket">
           <Key>
             <PropertyRef Name="Sno" />
@@ -118,27 +84,45 @@
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Assigned_Person" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Query" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="EmployeeID" Type="Guid" />
-          <NavigationProperty Name="UserRegister" Relationship="ArchentsITModel.FK__RaiseTick__Emplo__36B12243" FromRole="RaiseTicket" ToRole="UserRegister" />
+          <Property Name="EmployeeId" Type="String" MaxLength="54" FixedLength="false" Unicode="false" />
+          <Property Name="Issue_Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="priarity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Commant" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmpName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmpEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <Association Name="FK__RaiseTick__Emplo__36B12243">
-          <End Type="ArchentsITModel.UserRegister" Role="UserRegister" Multiplicity="0..1" />
-          <End Type="ArchentsITModel.RaiseTicket" Role="RaiseTicket" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserRegister">
-              <PropertyRef Name="EmpID" />
-            </Principal>
-            <Dependent Role="RaiseTicket">
-              <PropertyRef Name="EmployeeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <EntityType Name="UserRegister">
+          <Key>
+            <PropertyRef Name="Sno" />
+          </Key>
+          <Property Name="Sno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpID" Type="String" MaxLength="54" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ResetpasswordCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Phone_Number" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Firstregister" Type="Int32" />
+          <Property Name="registercount" Type="Int32" />
+          <Property Name="TeamID" Type="Int32" />
+          <Property Name="Otp" Type="Int32" />
+          <Property Name="RoleType" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="ArchentsITEntities5" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="RaiseTickets" EntityType="Self.RaiseTicket" />
+          <EntitySet Name="UserRegisters" EntityType="Self.UserRegister" />
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ArchentsITModelStoreContainer" CdmEntityContainer="ArchentsITEntities1">
+        <EntityContainerMapping StorageEntityContainer="ArchentsITModelStoreContainer" CdmEntityContainer="ArchentsITEntities5">
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="ArchentsITModel.Employee">
               <MappingFragment StoreEntitySet="Employees">
@@ -151,11 +135,31 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="RaiseTickets">
+            <EntityTypeMapping TypeName="ArchentsITModel.RaiseTicket">
+              <MappingFragment StoreEntitySet="RaiseTicket">
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="EmpEmail" ColumnName="EmpEmail" />
+                <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+                <ScalarProperty Name="Commant" ColumnName="Commant" />
+                <ScalarProperty Name="priarity" ColumnName="priarity" />
+                <ScalarProperty Name="Status1" ColumnName="Status1" />
+                <ScalarProperty Name="Issue_Type" ColumnName="Issue_Type" />
+                <ScalarProperty Name="Sno" ColumnName="Sno" />
+                <ScalarProperty Name="TicketNo" ColumnName="TicketNo" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Assigned_Person" ColumnName="Assigned_Person" />
+                <ScalarProperty Name="Query" ColumnName="Query" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="UserRegisters">
             <EntityTypeMapping TypeName="ArchentsITModel.UserRegister">
               <MappingFragment StoreEntitySet="UserRegister">
-                <ScalarProperty Name="Otp" ColumnName="Otp" />
-                <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+                <ScalarProperty Name="RoleType" ColumnName="RoleType" />
+                <ScalarProperty Name="Sno" ColumnName="Sno" />
                 <ScalarProperty Name="EmpID" ColumnName="EmpID" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -166,19 +170,8 @@
                 <ScalarProperty Name="Phone_Number" ColumnName="Phone_Number" />
                 <ScalarProperty Name="Firstregister" ColumnName="Firstregister" />
                 <ScalarProperty Name="registercount" ColumnName="registercount" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RaiseTickets">
-            <EntityTypeMapping TypeName="ArchentsITModel.RaiseTicket">
-              <MappingFragment StoreEntitySet="RaiseTicket">
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="Query" ColumnName="Query" />
-                <ScalarProperty Name="Assigned_Person" ColumnName="Assigned_Person" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="TicketNo" ColumnName="TicketNo" />
-                <ScalarProperty Name="Sno" ColumnName="Sno" />
+                <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+                <ScalarProperty Name="Otp" ColumnName="Otp" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

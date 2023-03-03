@@ -9,12 +9,12 @@ namespace ArchentsIT.Models
 {
     public class UserLogin
     {
-        [Display(Name = "EmailID")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Please Enter EmailId")]
+       // [Display(Name = "EmailID")]
+        [Required(ErrorMessage = "Please Enter EmailId")]
         public string EmailID { get; set; }
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Please Enter Password")]
-       /* [DataType(DataType.Password)]*/
+        [Required( ErrorMessage = "Please Enter Password")]
+       // [DataType(DataType.Password)]
         public string Password { get; set; }
-        public string Name { get; set; }
+     //   public string Name { get; set; }
     }
 }

@@ -4,11 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d9867c1637704a7da16bfb367f9241c4" Name="Diagram1">
+      <Diagram DiagramId="c40b4c6553104cc78cb13b698cbde39b" Name="Diagram1">
         <EntityTypeShape EntityType="ArchentsITModel.Employee" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ArchentsITModel.UserRegister" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ArchentsITModel.RaiseTicket" Width="1.5" PointX="5" PointY="1.125" />
-        <AssociationConnector Association="ArchentsITModel.FK__RaiseTick__Emplo__36B12243" />
+        <EntityTypeShape EntityType="ArchentsITModel.RaiseTicket" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ArchentsITModel.UserRegister" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

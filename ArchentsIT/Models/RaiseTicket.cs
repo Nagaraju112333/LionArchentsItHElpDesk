@@ -20,8 +20,13 @@ namespace ArchentsIT.Models
         public string Status { get; set; }
         public string Assigned_Person { get; set; }
         public string Query { get; set; }
-        public Nullable<System.Guid> EmployeeID { get; set; }
-    
-        public virtual UserRegister UserRegister { get; set; }
+        public string EmployeeId { get; set; }
+        public string Issue_Type { get; set; }
+        public string Status1 { get; set; }
+        public string priarity { get; set; }
+        public string Commant { get; set; }
+        public string EmpName { get; set; }
+        public string EmpEmail { get; set; }
+        public string UpdateDate { get; set; }
     }
 }

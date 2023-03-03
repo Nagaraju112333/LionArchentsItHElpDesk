@@ -1,0 +1,89 @@
+﻿@model ArchentsIT.Models.VerifyOtp
+@{
+    ViewBag.Title = "Verifyotp";
+    Layout = "~/Views/Shared/ArchentsIT.cshtml";
+}
+
+<html>
+<head>
+
+</head>
+<body>
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>ForgotPassword</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <style>
+            .main1 {
+                margin-left: 300px;
+                margin-top: 150px;
+            }
+
+                .main1 p {
+                    font-size: 2vw;
+                }
+
+            #btn1 {
+                border-radius: 20px;
+                color: white;
+                background-color: black;
+            }
+
+            #emailormobilenumber {
+                font-weight: 300;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+
+            <div class="main1">
+                <div>
+                    @if (Session["successmessage"] != null)
+                    {
+                    <p style="color:blue;">@Session["successmessage"]</p>
+                     }
+                </div>
+                <p style="">Verify Otp</p>
+
+                <div class="forgotpassword">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2" id="emailormobilenumber">Enter Otp</label>
+                            @Html.TextBoxFor(model => model.Otp, "", new { @class = "form-control w-50" })
+                            @Html.ValidationMessageFor(model => model.Otp, "", new { @class = "text-danger" })
+                            @*  @Html.TextBox("EmailID", "", new { @class = "form-control w-50" })*@
+                        </div>
+                        <div class="text-danger">
+                            @ViewBag.Message
+                        </div>
+                        <div class="form-group" style="margin-top:20px;">
+                            <div class="form-group">
+                                <input type="submit" value="Verify" class=" form-control  w-50" id="btn1" style="border-radius:5px;" />
+                            </div>
+                            <div style="margin-top:10px;">
+                                <a style="border-radius:5px" href="~/UserRegister/ForgotPassword" class="btn btn-success">Back</a>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+</body>
+</html>
+

@@ -1,0 +1,150 @@
+﻿@model ArchentsIT.Models.RaiseTicket
+@{
+    ViewBag.Title = "AddnewTicket";
+    Layout = "~/Views/Shared/ArchentsIT.cshtml";
+}
+<html>
+<head>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <style>
+        .maindiv {
+            margin-left: 500px;
+        }
+
+        .mainmina {
+            margin-top: 100px;
+        }
+
+        #TicketNo {
+            border-color: black;
+        }
+
+        #Date {
+            border-color: black;
+        }
+
+        #Status {
+            border-color: black;
+        }
+
+        #Assigned_Person {
+            border-color: black;
+        }
+
+        #Query {
+            border-color: black;
+        }
+
+        #EmployeeID {
+            border-color: black;
+        }
+
+        #fname {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="mainmina">
+        <div>
+            <h3 style="margin-left:500px;">Add New Ticket</h3>
+        </div>
+        <div class="maindiv">
+            @using (Html.BeginForm())
+                {
+                @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <h6 style="color:lightcoral">@ViewBag.IsEmailExist</h6>
+                <br />
+             
+          @*  @Html.EditorFor(model => model.TicketNo, new { htmlAttributes = new { @class = "form-control w-50 " } })
+            @Html.ValidationMessageFor(model => model.TicketNo, "", new { @class = "text-danger" })*@
+       
+                <div class="form-group">
+                    <label id="fname">Issue Type</label>
+                    <div class="form-group-lg  ">
+                        @* @Html.EditorFor(model => model.Issue_Type, new { htmlAttributes = new { @class = "form-control w-50" } })*@
+                        @Html.DropDownListFor(m => m.Issue_Type, ViewBag.CatList as SelectList, "-- Select Issue_Type---", new { @class = "form-control w-50" })
+                        @Html.ValidationMessageFor(model => model.Issue_Type, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+               
+                @*<div id="dvPassport" style="display: none">
+                    Passport Number:
+                    <input type="text" id="txtPassportNumber" />
+                </div>*@
+                <div class="form-group">
+                    <label id="fname">priority</label>
+                    <div class="form-group-lg  ">
+                        @* @Html.EditorFor(model => model.Issue_Type, new { htmlAttributes = new { @class = "form-control w-50" } })*@
+                        @Html.DropDownListFor(m => m.priarity, ViewBag.Priarity as SelectList, "-- Select priority--", new { @class = "form-control w-50" })
+                        @Html.ValidationMessageFor(model => model.Issue_Type, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+@*
+                @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control w-50" } })
+                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })*@
+
+
+
+                <div class="form-group">
+                    @*  @Html.LabelFor(model => model.Designation, htmlAttributes: new { @class = "control-label " })*@
+                    <label id="fname">Assigned_Person</label>
+                    <div class="form-group-lg ">
+                        <input type="text" value="@ViewBag.Admin" name="Assigned_Person" class="form-control  w-50 h-25" readonly />
+                        @* @Html.EditorFor(model => model.Assigned_Person, new { htmlAttributes = new { @class = "form-control w-50" } })*@
+                        @Html.ValidationMessageFor(model => model.Assigned_Person, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @* @Html.LabelFor(model => model.Phone_Number, htmlAttributes: new { @class = "control-label " })*@
+                    <label id="fname">Query</label>
+                    <div class="form-group-lg">
+                        @*  @Html.TextAreaFor(model => model.Query, new { htmlAttributes = new { @class = "form-control w-50" } })*@
+                        <textarea class="form-control w-50" cols="25" id="Description" name="Query" rows="3"></textarea>
+                        @Html.ValidationMessageFor(model => model.Query, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @* @Html.LabelFor(model => model.Phone_Number, htmlAttributes: new { @class = "control-label " })*@
+                    <label id="fname">Employeeid</label>
+                    <div class="form-group-lg">
+                        @*  @Html.EditorFor(model => model.EmployeeID, new { htmlAttributes = new { @class = "form-control w-50 h-25" } })*@
+                        <input type="text" value="@ViewBag.NewTicket" name="EmployeeID" class="form-control  w-50 h-25" readonly />
+                        @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div style="display:flex;">
+                    <div class="form-group" style="margin-top:20px;">
+                        <input type="submit" class="btn btn-success" value="Add New Ticket" id="btn12" style="border-radius:20px;" />
+                    </div>
+                    <div style="margin-top:20px; margin-left:318px;">
+                        <a href="~/UserRegister/GetEmployeeRecords" class="btn btn-primary" style="border-radius:15px">Back</a>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $("#Issue_Type").change(function () {
+                if ($(this).val() == "Others") {
+                    $("#dvPassport").show();
+                } else {
+                    $("#dvPassport").hide();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
