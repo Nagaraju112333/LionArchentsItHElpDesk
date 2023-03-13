@@ -9,93 +9,23 @@
 
 <html>
 <head>
+    <link href="~/CSS/Login.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css/">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width" />
     <title>Login</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    @*    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    *@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
+   
 
-        /*.form-horizontal {
-            margin-left: 650px;
-            margin-top: 100px;
-        }*/
-
-
-        #btn12 {
-            background-color: black;
-        }
-       body{
-          color:#000000;
-       }
-        p {
-            font-size: 3vw;
-        }
-       
-        #passwordlabel{
-            color:black;
-        }
-        #p2 {
-            margin-bottom: 40px;
-            color: black;
-        }
-        #emiallable{
-            color:black;
-        }
-        #EmailID {
-            border-color: black;
-            color: black;
-        }
-        #Email{
-            border-color:black;
-           
-        }
-
-        #Password {
-            border-color: black;
-        }
-      /*  #emiallable{
-            font-size:1.5em;
-        }
-        #passwordlabel{
-            font-size:1.5em;*/
-        }
-       /* .aaa h5{
-            font-size:2em;
-        }
-        #btn12{
-            font-size:1.5em;
-        }*/
-        .form-horizontal{
-            padding:20px
-        }
-        .second {
-            margin-top: 60px;
-            width: 490px;
-        }
-        #TwoDiv {
-            margin-top: 70px;
-            color: rgb(28, 28, 28)
-        }
-        #emiallable{
-            color:#1c1c1c;
-        }
-        #ithelpdeskid{
-            margin-top:-40px;
-            margin-left:5px;
-        }
-    </style>
 </head>
 <body>
     <div class="" style="display: flex;" id="TwoDiv">
@@ -104,6 +34,31 @@
            <img src="~/Images/IT Help Desk (1).png" width="850" height="600" style="margin-left:10px;" id="ithelpdeskid" />
         </div>
         <div class="second">
+
+            @if (TempData["message"] != null)
+            {
+                <div class="alert alert-success">
+                    <strong>Success!</strong>@TempData["message"];
+                    @*  <script>swal("Good job!", "You clicked the button!", "Success");</script>*@
+                    <button class="close" data-dismiss="alert">X</button>
+                </div>
+            }
+            @if (TempData["Successfull"] != null)
+            {
+                <div class="alert alert-success">
+                    <strong>Success!</strong>@TempData["Successfull"];
+                    @*  <script>swal("Good job!", "You clicked the button!", "Success");</script>*@
+                    <button class="close" data-dismiss="alert">X</button>
+                </div>
+            }
+            @if (TempData["NewPassword"] != null)
+            {
+                <div class="alert alert-success">
+                    <strong>Success!</strong>@TempData["NewPassword"];
+                    @*  <script>swal("Good job!", "You clicked the button!", "Success");</script>*@
+                    <button class="close" data-dismiss="alert">X</button>
+                </div>
+            }
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
@@ -111,24 +66,16 @@
                 <div class="form-horizontal card p-3">
 
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    @if (Session["Successfull"] != "")
-                    {
-                        <div class="text-success">@Session["Successfull"]</div>
-                    }
+                    @*@if (Session["Successfull"] != "")
+                {
+                    <div class="text-success">@Session["Successfull"]</div>
+                }*@
 
-                    @if (TempData["message"] != null)
-                    {
-                        <div class="alert alert-success">
-                            <strong>Success!</strong>@TempData["message"];
-                            @*  <script>swal("Good job!", "You clicked the button!", "Success");</script>*@
-                        </div>
-                    }
                     <h3 id="p2"> Login</h3>
                     @if (ViewBag.Message != "")
-                    {
-                        @* <script>swal("Good job!", "You clicked the button!", "Error");</script>*@
-                        <div class="text-danger">@ViewBag.Message</div>
-                    }
+                {
+                    <div class="text-danger">@ViewBag.Message</div>
+                }
                     <div class="form-group">
                         @*  @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label " })*@
                         <label id="emiallable">Email</label>
@@ -141,7 +88,10 @@
                         @*  @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label " })*@
                         <label id="passwordlabel">Password</label>
                         <div class="form-group-lg">
-                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control w-100", @type = "password", placeholder = "Password", AutoCompleteType = "current-password" } })
+                            <input type="password" name="Password" id="password" class="form-control w-100" placeholder="Password" AutoCompleteType="current-password" />
+                            @*<i class="bi bi-eye" id="showpassword"></i>*@
+                            <i class="bi bi-eye-slash" id="togglePassword"></i>
+                            @*  @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control w-100", @type = "password", placeholder = "Password", AutoCompleteType = "current-password" } })*@
                             @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                         </div>
                         <div class="text-end pt-2">
@@ -163,7 +113,17 @@
             }
         </div>
     </div>
-  
+  <script type="text/javascript">
+      const togglePassword = document.querySelector('#togglePassword');
+      const password = document.querySelector('#password');
+      togglePassword.addEventListener('click', function (e) {
+          // toggle the type attribute
+          const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+          password.setAttribute('type', type);
+          // toggle the eye / eye slash icon
+          this.classList.toggle('bi-eye');
+      });
+  </script>
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -182,28 +142,12 @@
                 $('#Password').attr('type', $(this).is(':checked') ? 'text' : 'password');
             });
         });
+        window.setTimeout(function () {
+            $(".alert").fadeTo(500, 0).slideUp(500, function () {
+                $(this).remove();
+            })
+        },4000)
     </script>
-
-
-    @* <script type="text/javascript">
-                $(document).ready(function () {
-                    alert("Hai")
-                    $('#show_password').hover(function show() {
-                        //Change the attribute to text
-                        $('#txtPassword').attr('type', 'text');
-                        $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
-                    },
-                        function () {
-                            //Change the attribute back to password
-                            $('#txtPassword').attr('type', 'password');
-                            $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
-                        });
-                //CheckBox Show Password
-                $('#ShowPassword').click(function () {
-                    $('#Password').attr('type', $(this).is(':checked') ? 'text' : 'password');
-                    });
-                });
-        </script>*@
 
 </body>
 </html>

@@ -1,0 +1,110 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+/*.form-horizontal {
+            margin-left: 650px;
+            margin-top: 100px;
+        }*/
+
+
+#btn12 {
+    background-color: black;
+}
+
+body {
+    color: #000000;
+}
+
+p {
+    font-size: 3vw;
+}
+
+#passwordlabel {
+    color: black;
+}
+
+#p2 {
+    margin-bottom: 40px;
+    color: black;
+}
+
+#emiallable {
+    color: black;
+}
+
+#EmailID {
+    border-color: black;
+    color: black;
+}
+
+#Email {
+    border-color: black;
+}
+
+#Password {
+    border-color: black;
+}
+/*  #emiallable{
+            font-size:1.5em;
+        }
+        #passwordlabel{
+            font-size:1.5em;*/
+}
+/* .aaa h5{
+            font-size:2em;
+        }
+        #btn12{
+            font-size:1.5em;
+        }*/
+.form-horizontal {
+    padding: 20px
+}
+
+.second {
+    margin-top: 60px;
+    width: 490px;
+}
+
+#TwoDiv {
+    margin-top: 70px;
+    color: rgb(28, 28, 28)
+}
+
+#emiallable {
+    color: #1c1c1c;
+}
+
+#ithelpdeskid {
+    margin-top: -40px;
+    margin-left: 5px;
+}
+/*  #showpassword{
+            position:absolute;
+            top:28%;
+            right:4%
+        }*/
+.form-group-lg input[type="password"],
+.form-group-lg input[type="text"] {
+    width: 100%;
+    padding: 12px,36px,12px,12px;
+    box-sizing: border-box;
+}
+
+#Password {
+    width: 300px;
+    position: relative;
+    color: black;
+}
+
+.bi-eye-slash {
+    position: absolute;
+    top: 58%;
+    right: 4%;
+    cursor: pointer;
+}
+
+#togglePassword {
+    font-size: 1.3em;
+}

@@ -1,0 +1,68 @@
+﻿* {
+    height: auto;
+    margin: 0;
+    padding: 0;
+}
+
+.form-group {
+    margin: 15px;
+}
+
+p {
+    font-size: 3vw;
+}
+
+.main {
+    margin-left: 430px;
+    margin-bottom: 150px;
+}
+
+#btn12 {
+    background-color: black;
+    border-radius: 20px;
+}
+
+#CreateButton {
+    margin-left: 0px;
+}
+
+#homeAndCreateLink {
+    margin-left: 5px;
+    margin-bottom: 50px;
+}
+
+
+#FirstName {
+    color: black;
+}
+
+#FirstName {
+    border-color: black;
+}
+
+#LastName {
+    border-color: black;
+}
+
+#Email {
+    border-color: black;
+    font-size: 1em;
+}
+
+#Designation {
+    border-color: black;
+}
+
+#Phone_Number {
+    border-color: black;
+}
+/* #fname{
+            font-size:1.5em;
+        }*/
+/*  #btn12{
+            font-size:1.5em;
+        }*/
+
+body {
+    color: #000000;
+}

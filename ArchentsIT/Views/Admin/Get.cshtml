@@ -71,6 +71,7 @@
 
                     <label id="fname">Status</label>
                     <div class="form-group-lg ">
+                        
                         @*  <input type="text" value="@Model.Status" class="form-control w-50" name="Status" />*@
                         @Html.DropDownListFor(m => m.Status, ViewBag.CatList1 as SelectList, new { @class = "form-control w-50", @Model.Query })
 

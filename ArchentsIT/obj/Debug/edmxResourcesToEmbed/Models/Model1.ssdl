@@ -1,16 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="ArchentsITModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="Employees">
-    <Key>
-      <PropertyRef Name="EmpID" />
-    </Key>
-    <Property Name="EmpID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="FullName" Type="nvarchar" MaxLength="50" />
-    <Property Name="Email" Type="nvarchar" MaxLength="50" />
-    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
-    <Property Name="Designation" Type="nvarchar" MaxLength="50" />
-    <Property Name="TeamId" Type="int" />
-  </EntityType>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="RaiseTicket">
     <Key>
       <PropertyRef Name="Sno" />
@@ -29,6 +18,9 @@
     <Property Name="EmpName" Type="nvarchar" MaxLength="50" />
     <Property Name="EmpEmail" Type="nvarchar" MaxLength="50" />
     <Property Name="UpdateDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="Approval" Type="nvarchar" MaxLength="50" />
+    <Property Name="ApprovalCC" Type="nvarchar" MaxLength="50" />
+    <Property Name="IssueImage" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="UserRegister">
     <Key>
@@ -49,8 +41,7 @@
     <Property Name="Otp" Type="int" />
     <Property Name="RoleType" Type="int" />
   </EntityType>
-  <EntityContainer Name="ArchentsITModelStoreContainer">
-    <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+  <EntityContainer Name="ModelStoreContainer">
     <EntitySet Name="RaiseTicket" EntityType="Self.RaiseTicket" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserRegister" EntityType="Self.UserRegister" Schema="dbo" store:Type="Tables" />
   </EntityContainer>

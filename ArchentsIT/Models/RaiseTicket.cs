@@ -28,5 +28,8 @@ namespace ArchentsIT.Models
         public string EmpName { get; set; }
         public string EmpEmail { get; set; }
         public string UpdateDate { get; set; }
+        public string Approval { get; set; }
+        public string ApprovalCC { get; set; }
+        public string IssueImage { get; set; }
     }
 }

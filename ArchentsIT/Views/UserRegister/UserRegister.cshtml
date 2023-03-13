@@ -12,80 +12,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- jQuery library -->
-   @* <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>*@
+    @* <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>*@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <style>
-        *{
-            height:auto;
-          margin:0;
-          padding:0;
-        }
-        .form-group {
-            margin: 15px;
-        }
+    <link href="~/CSS/Userregister.css" rel="stylesheet" />
 
-        p {
-            font-size: 3vw;
-        }
-
-        .main {
-            margin-left: 430px;
-            margin-bottom:150px;
-            
-        }
-        #btn12 {
-            background-color: black;
-            border-radius: 20px;
-        }
-
-        #CreateButton {
-            margin-left: 0px;
-        }
-
-        #homeAndCreateLink {
-            margin-left: 5px;
-            margin-bottom: 50px;
-        }
-      
-
-        #FirstName {
-            color: black;
-        }
-
-        #FirstName {
-            border-color: black;
-        }
-
-        #LastName {
-            border-color: black;
-        }
-
-        #Email {
-            border-color: black;
-            font-size:1em;
-        }
-
-        #Designation {
-            border-color: black;
-        }
-
-        #Phone_Number {
-            border-color: black;
-        }
-       /* #fname{
-            font-size:1.5em;
-        }*/
-      /*  #btn12{
-            font-size:1.5em;
-        }*/
-      
-      body{
-         color:#000000;
-      }
-    </style>
 </head>
 <body>
     <div class="">
@@ -97,7 +30,7 @@
         </div>
        
         <div class="main">
-            <h3 style="margin-left:10px;" id="p1">Create an Account</h3>
+            <h3 style="margin-left:10px;" id="p1">Create An Account</h3>
             @if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
             {
                 if (ViewBag.Message != null)

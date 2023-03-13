@@ -18,7 +18,7 @@ namespace ArchentsIT.Controllers
             public int id { get; set; }
             public string Type { get; set; }
         }
-        ArchentsITEntities5 db=new ArchentsITEntities5();   
+        ArchnetsITHelpDesk db=new ArchnetsITHelpDesk();   
         // GET: raiseTicket
         public ActionResult Index()
         {
@@ -38,7 +38,7 @@ namespace ArchentsIT.Controllers
         {
            // if (currentDate==10AM &&currentDate==10PM)
 
-            ViewBag.Admin = "nagaraju.boda@archents.com";
+            ViewBag.Admin = "itsupport@archents.com";
          //   ViewBag.Admin = "itsupport@archents.com";
             List<prearity> List11 = new List<prearity>();
             List11.Add(new prearity {  priarity = "Low" });
@@ -47,13 +47,14 @@ namespace ArchentsIT.Controllers
             List11.Add(new prearity {  priarity = "critical" });
             ViewBag.Priarity = new SelectList(List11, "priarity", "priarity");
             List<TypeOd> List=new List<TypeOd>();
-            List.Add(new TypeOd { id = 45, Type = "Display" });
-            List.Add(new TypeOd { id = 45, Type = " battery " });
-            List.Add(new TypeOd { id = 45, Type = "KeyBoard Bad Forform" });
-            List.Add(new TypeOd { id = 45, Type = "Hardware" });
-            List.Add(new TypeOd { id = 45, Type = "SoftWare Instalation" });
-            List.Add(new TypeOd { id = 45, Type = "Charger" });
             List.Add(new TypeOd { id = 45, Type = "Laptop" });
+            List.Add(new TypeOd { id = 45, Type = "Display Issue" });
+            List.Add(new TypeOd { id = 45, Type = "battery Issue " });
+            List.Add(new TypeOd { id = 45, Type = "KeyBoard Bad performance" });
+            List.Add(new TypeOd { id = 45, Type = "Hardware Issue" });
+            List.Add(new TypeOd { id = 45, Type = "SoftWare Instalation" });
+            List.Add(new TypeOd { id = 45, Type = "Charger Issue" });
+            
             List.Add(new TypeOd { id = 45, Type = "Others" });
             ViewBag.CatList = new SelectList(List, "Type", "Type");
             List<Status> list = new List<Status>();
@@ -73,50 +74,91 @@ namespace ArchentsIT.Controllers
         [HttpPost]
         public ActionResult AddnewTicket(RaiseTicket ticket)
         {
-            ViewBag.message="";
-            var currentDate = DateTime.Now;
-            var dateonly = currentDate.TimeOfDay;
-            var hour = currentDate.Hour;
-            var minute = currentDate.Minute;
-            var millisecond = currentDate.Millisecond;
-            if(hour>=10 && hour<19)
-            {
-                if (ticket != null)
+          
+                ViewBag.message = "";
+                var currentDate = DateTime.Now;
+                var dateonly = currentDate.TimeOfDay;
+                var hour = currentDate.Hour;
+                var minute = currentDate.Minute;
+                var millisecond = currentDate.Millisecond;
+                if (hour >= 10 && hour <19 )
+                {
+                    if (ticket != null)
+                    {
+                        var employeename = db.UserRegisters.Where(x => x.Email == System.Web.HttpContext.Current.User.Identity.Name).FirstOrDefault().FirstName;
+                        var EmplEmail = db.UserRegisters.Where(x => x.Email == System.Web.HttpContext.Current.User.Identity.Name).FirstOrDefault().Email;
+                        // it help desk email id
+                        ViewBag.Admin = "itsupport@archents.com";
+                        // madhu archents email
+                        ViewBag.admin1 = "madhu.vallapureddy@archents.com";
+                        int otpValue = new Random().Next(100000, 999999);
+                        ticket.TicketNo = otpValue.ToString();
+                        ticket.EmpName = employeename;
+                        ticket.EmpEmail = EmplEmail;
+                        ViewBag.prioriaty = ticket.priarity;
+                        ticket.Status = "Open";
+                        db.RaiseTickets.Add(ticket);
+                        ViewBag.tiketId = ticket.TicketNo;
+                    ViewBag.Reason = ticket.Issue_Type;
+                    ticket.Date = DateTime.Now;
+                        db.SaveChanges();
+                        int EmailOtp = new Random().Next(100000, 999999);
+                        SendVerificationLinkEmail(ticket.Assigned_Person);
+                        if (ticket.Approval != null)
+                        {
+                            Approvaltolaptop(ticket.Approval);
+                            approvalincc(ViewBag.admin1);
+                        }
+                        var message = "Registration successfully done. password " +
+                             " has been sent to your email id:" + ticket.Assigned_Person;
+                       /* Session["NewTicketCrated"] = "New ticket SuccessFully created";*/
+                    TempData["NewTicketCrated"] = "New ticket SuccessFully created";
+                    }
+                    else
+                    {
+                        return RedirectToAction("GetEmployeeRecords", "UserRegister");
+                    }
+                }
+                else
                 {
                     var employeename = db.UserRegisters.Where(x => x.Email == System.Web.HttpContext.Current.User.Identity.Name).FirstOrDefault().FirstName;
                     var EmplEmail = db.UserRegisters.Where(x => x.Email == System.Web.HttpContext.Current.User.Identity.Name).FirstOrDefault().Email;
-                   
-                    ViewBag.Admin = "nagaraju.boda@archents.com";
+                    // it help desk email id
+                    ViewBag.Admin = "itsupport@archents.com";
+                    // madhu email id
+                    ViewBag.admin1 = "madhu.vallapureddy@archents.com";
                     int otpValue = new Random().Next(100000, 999999);
                     ticket.TicketNo = otpValue.ToString();
                     ticket.EmpName = employeename;
                     ticket.EmpEmail = EmplEmail;
                     ViewBag.prioriaty = ticket.priarity;
-                    ticket.Status = "Open";
+                    ViewBag.Reason = ticket.Issue_Type;
+                    ticket.Status = "Not Assigned";
                     db.RaiseTickets.Add(ticket);
                     ViewBag.tiketId = ticket.TicketNo;
                     ticket.Date = DateTime.Now;
                     db.SaveChanges();
                     int EmailOtp = new Random().Next(100000, 999999);
                     SendVerificationLinkEmail(ticket.Assigned_Person);
+                    if (ticket.Approval != null)
+                    {
+
+                        Approvaltolaptop(ticket.Approval);
+                        approvalincc(ViewBag.admin1);
+
+                    }
                     var message = "Registration successfully done. password " +
                          " has been sent to your email id:" + ticket.Assigned_Person;
-                    ViewBag.message = "New ticket SuccessFully created";
-                }
-                else
-                {
-                    return RedirectToAction("GetEmployeeRecords", "UserRegister");
-                }
+                /* Session["NewTicketCrated"] = "New ticket SuccessFully created";*/
+                TempData["NewTicketCrated"] = "New ticket SuccessFully created";
+                /*TempData["ItNotAvailable"] = " Server Not Available  sent Tomorrow 10AM To 7PM.. ";*/
             }
-            else
-            {
-                TempData["ItNotAvailable"] = " Server Not Available  sent Tomorrow 10AM To 7PM.. ";
-            }
-           
 
-            return RedirectToAction("GetEmployeeRecords", "UserRegister");
+
+                return RedirectToAction("GetEmployeeRecords", "UserRegister");
             
-    
+            return View();
+          
         }
         [NonAction]
         public void SendVerificationLinkEmail(string emailID)
@@ -130,16 +172,88 @@ namespace ArchentsIT.Controllers
             // var fromEmail = new MailAddress("nagaraju.bodaarchents.com@outlook.com", emailID);
             var fromEmail = new MailAddress("Complaints.archents@outlook.com", emailID);
             var toEmail = new MailAddress(emailID);
-            //var fromEmailPassword = "Nagaraju@123"; // Replace with actual password
-            var fromEmailPassword = "V@11@pu6eddy$"; // Replace with actual password
+            //var fromEmailPassword = "Nagaraju@123"; 
+            var fromEmailPassword = "V@11@pu6eddy$";
             string subject = "";
             string body = "";
             subject = "Subject!"+" "+ViewBag.tiketId +" "+"Is Raised";
-            body = "<br/><br/> Hi  It Service Desk, <br/> Ticket no has been raised by "+"<b> "+ employeename+ " "+" "+" "+"</b>"+"with priority"+"<b>" +" "+" "+ViewBag.prioriaty+"</b>"+" "+" "+" "+" "+" is assigned to you his" +" "+" "+" "+ " <b>Email ID:</b>" + employeeEmail+" "
+            body = "<br/><br/> Hi  It Service Desk, <br/> Ticket no has been raised by "+"<b> "+ employeename+ " "+" "+" "+"</b>"+"with priority"+"<b>" +" "+" "+ViewBag.prioriaty+"</b>"+" "+" "+ "And Reason <b> " + ViewBag.Reason + "</b> "+" is assigned to you his" +" "+" "+" "+ " <b>Email ID:</b>" + employeeEmail+" "
             + "</a> ";
 
 
          //   MailMessage mc = new MailMessage("nagaraju.bodaarchents.com@outlook.com", emailID);
+            MailMessage mc = new MailMessage("Complaints.archents@outlook.com", emailID);
+            mc.Subject = subject;
+            mc.Body = body;
+            mc.IsBodyHtml = true;
+            SmtpClient smtp = new SmtpClient("smtp.office365.com", 587);
+            smtp.Timeout = 1000000;
+            smtp.EnableSsl = true;
+            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            //NetworkCredential nc = new NetworkCredential("nagaraju.bodaarchents.com@outlook.com", "Nagaraju@123");
+            NetworkCredential nc = new NetworkCredential("Complaints.archents@outlook.com", "V@11@pu6eddy$");
+            smtp.UseDefaultCredentials = false;
+            smtp.Credentials = nc;
+            smtp.Send(mc);
+        }
+        //approval to laptop
+        public void Approvaltolaptop(string emailID)
+        {
+            var EmployeeId = db.UserRegisters.Where(x => x.Email == System.Web.HttpContext.Current.User.Identity.Name).FirstOrDefault().EmpID;
+            ViewBag.employeeID = EmployeeId;
+            var employeeEmail = db.UserRegisters.Where(x => x.Email == System.Web.HttpContext.Current.User.Identity.Name).FirstOrDefault().Email;
+            var employeename = db.UserRegisters.Where(x => x.Email == System.Web.HttpContext.Current.User.Identity.Name).FirstOrDefault().FirstName;
+
+            // var verifyUrl = "/Account/" +"/" ;
+            // var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
+            // var fromEmail = new MailAddress("nagaraju.bodaarchents.com@outlook.com", emailID);
+            var fromEmail = new MailAddress("Complaints.archents@outlook.com", emailID);
+            var toEmail = new MailAddress(emailID);
+            //var fromEmailPassword = "Nagaraju@123"; 
+            var fromEmailPassword = "V@11@pu6eddy$";
+            string subject = "";
+            string body = "";
+            subject = "Approval! Needed for the laptop :" + ViewBag.tiketId;
+            body = " <br/><br/> Hi, <br/>The ticket number: " + ViewBag.tiketId +" raised by> "+ employeename + "("+ EmployeeId + ")  needs your approval  Please accept the request for further process  </a>";
+
+
+            //   MailMessage mc = new MailMessage("nagaraju.bodaarchents.com@outlook.com", emailID);
+            MailMessage mc = new MailMessage("Complaints.archents@outlook.com", emailID);
+            mc.Subject = subject;
+            mc.Body = body;
+            mc.IsBodyHtml = true;
+            SmtpClient smtp = new SmtpClient("smtp.office365.com", 587);
+            smtp.Timeout = 1000000;
+            smtp.EnableSsl = true;
+            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            //NetworkCredential nc = new NetworkCredential("nagaraju.bodaarchents.com@outlook.com", "Nagaraju@123");
+            NetworkCredential nc = new NetworkCredential("Complaints.archents@outlook.com", "V@11@pu6eddy$");
+            smtp.UseDefaultCredentials = false;
+            smtp.Credentials = nc;
+            smtp.Send(mc);
+        }
+        //approval for cc
+        public void approvalincc(string emailID)
+        {
+            var EmployeeId = db.UserRegisters.Where(x => x.Email == System.Web.HttpContext.Current.User.Identity.Name).FirstOrDefault().EmpID;
+            ViewBag.employeeID = EmployeeId;
+            var employeeEmail = db.UserRegisters.Where(x => x.Email == System.Web.HttpContext.Current.User.Identity.Name).FirstOrDefault().Email;
+            var employeename = db.UserRegisters.Where(x => x.Email == System.Web.HttpContext.Current.User.Identity.Name).FirstOrDefault().FirstName;
+
+            // var verifyUrl = "/Account/" +"/" ;
+            // var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
+            // var fromEmail = new MailAddress("nagaraju.bodaarchents.com@outlook.com", emailID);
+            var fromEmail = new MailAddress("Complaints.archents@outlook.com", emailID);
+            var toEmail = new MailAddress(emailID);
+            //var fromEmailPassword = "Nagaraju@123"; 
+            var fromEmailPassword = "V@11@pu6eddy$";
+            string subject = "";
+            string body = "";
+            subject = "Approval! Needed for the laptop :" + ViewBag.tiketId;
+            body = "<br/><br/> Hi, <br/>The ticket number: " + ViewBag.tiketId + " raised by  " + employeename + "(" + EmployeeId + ")  needs your approval  Please accept the request for further process  </a>";
+
+
+            //   MailMessage mc = new MailMessage("nagaraju.bodaarchents.com@outlook.com", emailID);
             MailMessage mc = new MailMessage("Complaints.archents@outlook.com", emailID);
             mc.Subject = subject;
             mc.Body = body;

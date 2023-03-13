@@ -6,38 +6,87 @@ using System.Net.Mail;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
+using System.ComponentModel;
 
 namespace ArchentsIT.Controllers
 {
     public class AdminController : Controller
     {
-        ArchentsITEntities5 db=new ArchentsITEntities5();
+        ArchnetsITHelpDesk db=new ArchnetsITHelpDesk();
         // GET: Admin
+        [HttpGet]
+        public ActionResult Testing()
+        {
+            return View();  
+        }
         public ActionResult Index()
         {
             return View();
         }
-        public class Status
+        [HttpPost]
+        public ActionResult Getallemployees(RaiseTicket rai )
         {
-            public int id { get; set; }
-            public string status { get; set;}
+
+            var result=db.RaiseTickets.Where(x => x.Status== rai.Status.ToString()).ToList();
+            var priarity = db.RaiseTickets.Where(x => x.priarity ==rai.priarity).ToList();
+            var bothdetails=db.RaiseTickets.OrderBy(x=>x.Status==rai.Status).ThenBy(x=>x.priarity==rai.priarity).ToList();
+            if (result.Count!=0)
+            {
+                TempData["StatusDetails"] = result;
+                ViewBag.data2 = result;
+                Session["data"] = result;
+            }
+            else if (bothdetails != null)
+            {
+                TempData["statusandpriarity"] = bothdetails;
+            }
+            else
+            {
+
+                TempData["Priaroty"] = priarity;
+            }
+              
+            return RedirectToAction("Getallemployees", "Admin");
         }
+        [HttpPost]
+        public ActionResult StatusFilters(RaiseTicket tai)
+        {
+            return View();
+        }
+       
+
+       
         [HttpGet]
         public ActionResult Getallemployees()
         {
-           
-            var result=db.RaiseTickets.ToList();    
+          
+            ViewBag.filter = TempData["StatusDetails"];
+
+            ViewBag.priarity = TempData["Priaroty"];
+            ViewBag.statusandpriarity = TempData["statusandpriarity"];
+            Session["AdminLogin"] = db.UserRegisters.Where(x => x.Email == System.Web.HttpContext.Current.User.Identity.Name).FirstOrDefault().FirstName;
+
+            var result =db.RaiseTickets.ToList();    
             return View(result);
         }
-        [HttpGet]
-        public ActionResult Get(int? id)
+        public class Status
         {
+            public int id { get; set; }
+            public string status { get; set; }
+        }
+        [HttpGet]
+        public ActionResult Get(string id)
+        {
+            // RaiseTicket model = new RaiseTicket();
+
+
             List<Status> list = new List<Status>();
             list.Add(new Status { id = 101, status = "Open" });
             list.Add(new Status { id = 101, status = "Inprogress" });
             list.Add(new Status { id = 101, status = "Completed" });
             list.Add(new Status { id = 101, status = "Pending" });
-            list.Add(new Status { id = 101, status = "Con'do" });
+            list.Add(new Status { id = 101, status = "Con't do" });
             ViewBag.CatList1 = new SelectList(list, "status", "status");
             var result = db.RaiseTickets.FirstOrDefault(x => x.TicketNo == id.ToString());
             result.UpdateDate = DateTime.Now.ToString();
@@ -51,15 +100,15 @@ namespace ArchentsIT.Controllers
 
             if (rai != null)
             { 
-                 result.Status= rai.Status;
-                 result.Commant=rai.Commant;
+                result.Status= rai.Status;
+                result.Commant=rai.Commant;
                 result.UpdateDate = rai.UpdateDate;
-                 db.SaveChanges();
+                db.SaveChanges();
                 ViewBag.Status = rai.Status;
                 ViewBag.commant = rai.Commant;
                 SendVerificationLinkEmail(result.EmpEmail);
                 
-                Session["message11"] = "Status Updated Successfully";
+                TempData["message11"] = "Status Updated Successfully";
             }
             return RedirectToAction("Getallemployees", "Admin");
         }
@@ -78,7 +127,7 @@ namespace ArchentsIT.Controllers
             + "</a> ";
 
 
-            //   MailMessage mc = new MailMessage("nagaraju.bodaarchents.com@outlook.com", emailID);
+            // MailMessage mc = new MailMessage("nagaraju.bodaarchents.com@outlook.com", emailID);
             MailMessage mc = new MailMessage("Complaints.archents@outlook.com", emailID);
             mc.Subject = subject;
             mc.Body = body;

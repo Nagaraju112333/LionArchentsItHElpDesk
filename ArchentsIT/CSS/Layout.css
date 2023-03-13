@@ -1,0 +1,83 @@
+﻿/* body{
+            background-color:#000000;
+        }*/
+
+.archnetsHeader img {
+    margin-left: 70px;
+    margin-top: 20px;
+}
+
+.p3 h1 {
+    margin-top: 20px;
+    margin-left: 300px;
+    color: #684040b4;
+}
+
+.list ul li {
+    list-style-type: none;
+}
+
+/* .username {
+            margin-top: 10px;
+            margin-left: 650px;
+            align-items: end;
+        }*/
+/*
+        .username a {
+            color: black;
+        }*/
+
+.back a {
+    margin-bottom: 100px;
+}
+
+.d {
+    display: flex;
+    margin-top: 10px;
+    margin-left: 500px;
+}
+
+.username {
+    margin-left: 20px;
+    margin-top: 10px;
+    display: flex;
+}
+
+
+
+/* .py-3 {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }*/
+
+#account {
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+
+#icindiv {
+    margin-left: 620px;
+    margin-top: 20px;
+}
+
+#account #dropdownMenuButton1 {
+    font-size: 1.5em;
+}
+
+#dropdownMenuButton1 {
+    margin-bottom: 100px;
+}
+
+.username a {
+    color: #2b959c
+}
+
+.p3 h1 {
+    font-variant: small-caps;
+    font-weight: bold;
+    font-family: "Times New Roman";
+    font-size: 40px;
+    color: #090;
+    color: lightskyblue;
+}

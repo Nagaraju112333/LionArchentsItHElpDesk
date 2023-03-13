@@ -13,10 +13,10 @@ namespace ArchentsIT.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ArchentsITEntities5 : DbContext
+    public partial class ArchnetsITHelpDesk : DbContext
     {
-        public ArchentsITEntities5()
-            : base("name=ArchentsITEntities5")
+        public ArchnetsITHelpDesk()
+            : base("name=ArchnetsITHelpDesk")
         {
         }
     
@@ -25,7 +25,6 @@ namespace ArchentsIT.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<RaiseTicket> RaiseTickets { get; set; }
         public virtual DbSet<UserRegister> UserRegisters { get; set; }
     }

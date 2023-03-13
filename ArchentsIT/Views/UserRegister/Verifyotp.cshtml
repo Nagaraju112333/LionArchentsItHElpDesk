@@ -37,52 +37,71 @@
             }
 
             #emailormobilenumber {
-                font-weight: 300;
+                font-weight: 800;
             }
         </style>
     </head>
     <body>
         <div class="container">
-
+          
             <div class="main1">
-                <div>
-                    @if (Session["successmessage"] != null)
+                <div style="margin-right:550px;">
+                   @* @if (Session["OtpVerifySuccessfully"] != null)
                     {
-                    <p style="color:blue;">@Session["successmessage"]</p>
-                     }
+                        <div class="alert alert-success">
+                            <strong>Success!</strong>@Session["OtpVerifySuccessfully"];
+                            <button class="close" data-dismiss="alert">X</button>
+                        </div>
+                    }*@
+                    @if (TempData["successmessage"] != null)
+                    {
+                        <div class="alert alert-success">
+                            <strong>Success!</strong>@TempData["successmessage"];
+                            <button class="close" data-dismiss="alert">X</button>
+                        </div>
+                    }
                 </div>
                 <p style="">Verify Otp</p>
 
                 <div class="forgotpassword">
+
                     @using (Html.BeginForm())
                     {
                         @Html.AntiForgeryToken()
-                    <div class="form-horizontal">
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                        <div class="form-group">
-                            <label class="control-label col-md-2" id="emailormobilenumber">Enter Otp</label>
-                            @Html.TextBoxFor(model => model.Otp, "", new { @class = "form-control w-50" })
-                            @Html.ValidationMessageFor(model => model.Otp, "", new { @class = "text-danger" })
-                            @*  @Html.TextBox("EmailID", "", new { @class = "form-control w-50" })*@
-                        </div>
-                        <div class="text-danger">
-                            @ViewBag.Message
-                        </div>
-                        <div class="form-group" style="margin-top:20px;">
                             <div class="form-group">
-                                <input type="submit" value="Verify" class=" form-control  w-50" id="btn1" style="border-radius:5px;" />
+                                <label class="control-label col-md-2" id="emailormobilenumber">Enter Otp</label>
+                                @Html.TextBoxFor(model => model.Otp, "", new { @class = "form-control w-50",@placeholder = "Enter OTP" })
+                                @Html.ValidationMessageFor(model => model.Otp, "", new { @class = "text-danger" })
+                                @*  @Html.TextBox("EmailID", "", new { @class = "form-control w-50" })*@
                             </div>
-                            <div style="margin-top:10px;">
-                                <a style="border-radius:5px" href="~/UserRegister/ForgotPassword" class="btn btn-success">Back</a>
+                            <div class="text-danger">
+                                @ViewBag.Message
+                            </div>
+                            <div class="form-group" style="margin-top:20px;">
+                                <div class="form-group">
+                                    <input type="submit" value="Verify" class=" form-control  w-50" id="btn1" style="border-radius:5px;" />
+                                </div>
+                                <div style="margin-top:10px;">
+                                    <a style="border-radius:5px" href="~/UserRegister/ForgotPassword" class="btn btn-success">Back</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     }
                 </div>
             </div>
         </div>
+        <script type="text/javascript">
+            window.setTimeout(function () {
+                $(".alert").fadeTo(500, 0).slideUp(500, function () {
+                    $(this).remove();
+                })
+            }, 4000)
+        </script>
     </body>
+
 </html>
 </body>
 </html>
