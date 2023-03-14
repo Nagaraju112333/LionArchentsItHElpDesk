@@ -17,6 +17,6 @@ namespace ArchentsIT.Models
         [Compare("NewPassword", ErrorMessage = "New password and confirm password does not match")]
 
         [Required]
-            public string ConfirmPassword { get; set; }
+         public string ConfirmPassword { get; set; }
     }
 }

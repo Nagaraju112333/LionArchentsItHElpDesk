@@ -2,6 +2,9 @@
     margin: 0;
     padding: 0;
 }
+/*body{
+    background-color:rgb(128, 128, 128)
+}*/
 
 /*.form-horizontal {
             margin-left: 650px;
@@ -65,11 +68,13 @@ p {
 .second {
     margin-top: 60px;
     width: 490px;
+    /*background-color: #ffd89b , #19547b;*/
+   
 }
 
 #TwoDiv {
     margin-top: 70px;
-    color: rgb(28, 28, 28)
+    color: rgb(28, 28, 28);
 }
 
 #emiallable {
@@ -107,4 +112,11 @@ p {
 
 #togglePassword {
     font-size: 1.3em;
+}
+.form-horizontal {
+    /*background: linear-gradient(to right, #ffd89b 0%, #19547b 100%);*/
+    /*background: linear-gradient(to right, #4ca1af 0%, #c4e0e5 100%);*/
+    /*background: linear-gradient(to right, #ddd6f3 0%, #faaca8 100%);*/
+  /*  background : linear-gradient(to right, #c9d6ff 0%, #e2e2e2 100%);*/
+
 }

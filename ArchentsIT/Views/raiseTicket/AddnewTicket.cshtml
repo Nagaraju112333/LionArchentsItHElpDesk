@@ -5,6 +5,8 @@
 }
 <html>
 <head>
+  
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -18,15 +20,15 @@
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js">
     </script>
-   @* <script src="~/js/fancyTable.js">
-    </script>
-    <link href="~/StyleSheets/jquery.dataTables.min.css" rel="stylesheet" />
-    <script src="~/js/jquery.min.js"></script>
-    <link href="~/StyleSheets/basic.css" rel="stylesheet" />
-    <link href="~/StyleSheets/bootstrap.min.css" rel="stylesheet" />
-    <script src="~/js/toaster.js"></script>
-    <script src="~/js/jquery.dataTables.min.js" type="text/javascript"></script>
-    <script src="~/js/bootstrap.min.js" type="text/javascript"></script>*@
+    @* <script src="~/js/fancyTable.js">
+        </script>
+        <link href="~/StyleSheets/jquery.dataTables.min.css" rel="stylesheet" />
+        <script src="~/js/jquery.min.js"></script>
+        <link href="~/StyleSheets/basic.css" rel="stylesheet" />
+        <link href="~/StyleSheets/bootstrap.min.css" rel="stylesheet" />
+        <script src="~/js/toaster.js"></script>
+        <script src="~/js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script src="~/js/bootstrap.min.js" type="text/javascript"></script>*@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" />
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -67,17 +69,29 @@
         #fname {
             color: black;
         }
+
         #IssueTypeId {
             border-color: black;
         }
+
         #IssueTypeIddd {
             border-color: black;
         }
+
         #Assigned_Person {
             border-color: black;
         }
-        #Query{
+
+        #Query {
             border-color: black;
+        }
+       
+        .bi-caret-down-fill {
+            position: absolute;
+            top: 5px;
+            right: 51%;
+           cursor:pointer;
+          
         }
     </style>
 </head>
@@ -106,8 +120,9 @@
 
                     <div class="form-group">
                         <label id="fname">Issue Type</label>
-                        <div class="form-group-lg  ">
+                        <div class="form-group-lg  " style="position:relative">
                             @Html.DropDownListFor(m => m.Issue_Type, ViewBag.CatList as SelectList, "-- Issue Type--", new { @class = "form-control w-50",@id="IssueTypeId" })
+                            <i class="bi bi-caret-down-fill"id="Issue_Type"></i>
                             @Html.ValidationMessageFor(model => model.Issue_Type, "", new { @class = "text-danger" })
                           
                             <div id="dvPassport">
@@ -119,10 +134,11 @@
 
                    
                     <div class="form-group">
-                        <label id="fname">priority</label>
-                        <div class="form-group-lg  ">
+                        <label id="fname">Priority</label>
+                        <div class="form-group-lg  " style="position:relative">
                             @* @Html.EditorFor(model => model.Issue_Type, new { htmlAttributes = new { @class = "form-control w-50" } })*@
-                            @Html.DropDownListFor(m => m.priarity, ViewBag.Priarity as SelectList, "-- Select priority--", new { @class = "form-control w-50" })
+                            @Html.DropDownListFor(m => m.priarity, ViewBag.Priarity as SelectList, "-- Select Priority--", new { @class = "form-control w-50" })
+                            <i class="bi bi-caret-down-fill"></i>
                             @Html.ValidationMessageFor(model => model.Issue_Type, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -135,7 +151,7 @@
 
                     <div class="form-group">
                         @*  @Html.LabelFor(model => model.Designation, htmlAttributes: new { @class = "control-label " })*@
-                        <label id="fname">Assigned_Person</label>
+                        <label id="fname">Assigned Person</label>
                         <div class="form-group-lg ">
                             <input type="text" value="@ViewBag.Admin" name="Assigned_Person" class="form-control  w-50 h-25" readonly />
                             @* @Html.EditorFor(model => model.Assigned_Person, new { htmlAttributes = new { @class = "form-control w-50" } })*@
@@ -145,7 +161,7 @@
 
                     <div class="form-group">
                         @* @Html.LabelFor(model => model.Phone_Number, htmlAttributes: new { @class = "control-label " })*@
-                        <label id="fname">Query</label>
+                        <label id="fname">Description</label>
                         <div class="form-group-lg">
                             @*  @Html.TextAreaFor(model => model.Query, new { htmlAttributes = new { @class = "form-control w-50" } })*@
                             <textarea class="form-control w-50" cols="25" id="Description" name="Query" rows="3"></textarea>
@@ -154,7 +170,7 @@
                     </div>
                     <div class="form-group">
                         @* @Html.LabelFor(model => model.Phone_Number, htmlAttributes: new { @class = "control-label " })*@
-                        <label id="fname">Employeeid</label>
+                        <label id="fname">Employee Id</label>
                         <div class="form-group-lg">
                             @*  @Html.EditorFor(model => model.EmployeeID, new { htmlAttributes = new { @class = "form-control w-50 h-25" } })*@
                             <input type="text" value="@ViewBag.NewTicket" name="EmployeeID" class="form-control  w-50 h-25" readonly />
@@ -163,10 +179,10 @@
                     </div>
                     <div style="display:flex;">
                         <div class="form-group" style="margin-top:20px;">
-                            <input type="submit" class="btn btn-success" value="Add New Ticket" id="btn12" style="border-radius:20px;" />
+                            <input type="submit" class="btn btn-success" value="Send" id="btn12" style="border-radius:20px;width:100px;" />
                         </div>
-                        <div style="margin-top:20px; margin-left:318px;">
-                            <a href="~/UserRegister/GetEmployeeRecords" class="btn btn-primary" style="border-radius:15px">Back</a>
+                        <div style="margin-top:20px; margin-left:320px;">
+                            <a href="~/UserRegister/GetEmployeeRecords" class="btn btn-primary" style="border-radius:15px;width:100px;">Back</a>
                         </div>
                     </div>
                 </div>
@@ -178,7 +194,7 @@
            $("#dvPassport").hide();
            $("#IssueTypeId").change(function () {
                var text = $("#IssueTypeId option:selected").text();
-               if (text == "Laptop") {
+               if (text == "New Laptop") {
                    $("#dvPassport").show();
                }
                else {

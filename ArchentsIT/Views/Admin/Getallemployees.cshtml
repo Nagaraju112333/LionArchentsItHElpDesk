@@ -75,10 +75,16 @@ Layout = "~/Views/Shared/ArchentsIT.cshtml";
     {
         <div class="alert alert-success">
             <strong>Success!</strong>@TempData["message11"] ;
+            <button class="close" data-dismiss="alert" style="float:right;">X</button>
+        </div>
+    }
+    @if (ViewBag.successfully != null)
+    {
+        <div class="alert alert-success" style="margin-left:200px;margin-right:300px;margin-right:300px">
+            <strong>Success!</strong>@ViewBag.successfully;
             <button class="close" data-dismiss="alert">X</button>
         </div>
     }
-
 
 
     @* list.Add(new Status { id = 100, status = "Open" });
@@ -90,12 +96,12 @@ Layout = "~/Views/Shared/ArchentsIT.cshtml";
 
     <div class="maindiv">
 
-          @*  <form method="post" action="~/Admin/Getallemployees">
+        @*  <form method="post" action="~/Admin/Getallemployees">
                            @Html.DropDownListFor(model =>Model, ViewBag.CatList1 as SelectList, "-- Status--", new { @class = "form-control w-50", @id = "IssueTypeId" })
                <input type="submit" value="Refresh" name="" class=" btn btn-default" />
 
             </form>*@
-   
+
         @*     <a href="~/raiseTicket/AddnewTicket" class="btn btn-link" style="float:right;margin-right:65px;" id="addnewbtn">AddNewTicket</a>*@
         <table id="hotelsTable" class="tablesorter table hoteltable-bordered sampleTable" style="width: 100%">
             <thead>
@@ -118,10 +124,10 @@ Layout = "~/Views/Shared/ArchentsIT.cshtml";
 
                     </th>
                     <th>
-                        Query
+                        Description
                     </th>
                     <th>
-                        Assigned_Person
+                        Assigned Person
                     </th>
                     <th>
                         Status
@@ -131,7 +137,7 @@ Layout = "~/Views/Shared/ArchentsIT.cshtml";
 
                     </th>
                     <th>
-                        priority
+                        Priority
                     </th>
                     <th>
                         Comment
@@ -397,7 +403,7 @@ Layout = "~/Views/Shared/ArchentsIT.cshtml";
     </script>
     <script type="text/javascript">
         window.setTimeout(function () {
-            $(".alert").fadeTo(500, 0).slideRight(500, function () {
+            $(".alert").fadeTo(500, 0).slideUp(500, function () {
                 $(this).remove();
             })
         }, 4000)

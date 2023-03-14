@@ -1,5 +1,5 @@
 ﻿/* body{
-            background-color:#000000;
+            background-color:#808080;
         }*/
 
 .archnetsHeader img {
@@ -57,7 +57,7 @@
 
 
 #icindiv {
-    margin-left: 620px;
+    margin-left: 550px;
     margin-top: 20px;
 }
 
@@ -78,6 +78,7 @@
     font-weight: bold;
     font-family: "Times New Roman";
     font-size: 40px;
-    color: #090;
-    color: lightskyblue;
+    /*color: #090;*/
+   /* color:#0B0B3B;*/
+    color:#09529b;
 }

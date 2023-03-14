@@ -95,7 +95,7 @@
                             @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                         </div>
                         <div class="text-end pt-2">
-                            @Html.ActionLink("Forgot your password?", "ForgotPassword", "UserRegister", new { style = "text-decoration:none; color:black" })
+                            <a>  @Html.ActionLink("Forgot your password?", "ForgotPassword", "UserRegister", new { style = "text-decoration:none; color:black" })</a>
                         </div>
                     </div>
 

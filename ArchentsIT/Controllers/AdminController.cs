@@ -8,7 +8,6 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.Ajax.Utilities;
 using System.ComponentModel;
-
 namespace ArchentsIT.Controllers
 {
     public class AdminController : Controller
@@ -60,7 +59,7 @@ namespace ArchentsIT.Controllers
         [HttpGet]
         public ActionResult Getallemployees()
         {
-          
+            ViewBag.successfully = TempData["Successfully"];
             ViewBag.filter = TempData["StatusDetails"];
 
             ViewBag.priarity = TempData["Priaroty"];

@@ -11,7 +11,8 @@ namespace ArchentsIT.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class RaiseTicket
     {
         public int Sno { get; set; }
@@ -23,6 +24,7 @@ namespace ArchentsIT.Models
         public string EmployeeId { get; set; }
         public string Issue_Type { get; set; }
         public string Status1 { get; set; }
+       
         public string priarity { get; set; }
         public string Commant { get; set; }
         public string EmpName { get; set; }

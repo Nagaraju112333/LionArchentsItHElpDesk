@@ -57,6 +57,9 @@
         #addnewbtn {
             margin-bottom: -20px;
         }
+        #addnewbtn{
+            font-size:22px;
+        }
     </style>
 </head>
 <body>
@@ -77,10 +80,19 @@
         {
             <p style="text-align:center;color:red">@TempData["ItNotAvailable"]</p>
         }
+        @if (ViewBag.successfully != null)
+        {
+            <div class="alert alert-success" style="margin-left:200px;margin-right:300px;margin-right:300px">
+                <strong>Success!</strong>@ViewBag.successfully
+                @*  <script>swal("Good job!", "You clicked the button!", "Success");</script>*@
+                <button class="close" data-dismiss="alert" style="float:right;">X</button>
+            </div>
+        }
     </div>
     <div class="maindiv">
 
-        <a href="~/raiseTicket/AddnewTicket" class="btn btn-link" style="float:right;margin-right:65px;" id="addnewbtn">AddTicket <i class="fa-solid fa-plus"></i></a>
+        <a href="~/raiseTicket/AddnewTicket" class="btn btn-link" style="float:right;margin-right:65px;" id="addnewbtn">
+        <i class="bi bi-plus-circle-fill" style="font-size:22px; margin-right:7px;"></i>Add Ticket </a>
         <table id="hotelsTable" class="tablesorter table hoteltable-bordered sampleTable" style="width: 100%">
             <thead>
                 <tr>
@@ -91,7 +103,7 @@
                             EmployeeID
                         </th>*@
                     <th>
-                        TicketNo
+                        Ticket No
                     </th>
                     <th>
                         Date
@@ -100,13 +112,13 @@
                         Status
                     </th>
                     <th>
-                        Assigned_Person
+                        Assigned Person
                     </th>
                     <th>
-                        Query
+                        Description
                     </th>
                     <th>
-                        priority
+                        Priority
                     </th>
                     <th>
                         Comment
@@ -166,15 +178,14 @@
                 "dom": "lifrtip"
             });
         });
-    </script>
-
-    <script type="text/javascript">
         window.setTimeout(function () {
             $(".alert").fadeTo(500, 0).slideUp(500, function () {
                 $(this).remove();
             })
         }, 4000)
     </script>
+
+   
 </body>
 
 </html>

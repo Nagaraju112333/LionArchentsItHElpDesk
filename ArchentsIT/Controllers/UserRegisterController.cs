@@ -18,6 +18,8 @@ using static System.Net.WebRequestMethods;
 using System.Runtime.Remoting.Services;
 namespace ArchentsIT.Controllers
 {
+    // original
+
     public class UserRegisterController : Controller
     {
         // GET: UserRegister
@@ -69,7 +71,7 @@ namespace ArchentsIT.Controllers
                     using (ArchnetsITHelpDesk dc = new ArchnetsITHelpDesk())
                     {
                         user.registercount = 1;
-                        user.RoleType = 2;
+                        user.RoleType =2;
                         dc.UserRegisters.Add(user);
                         dc.SaveChanges();
 
@@ -138,7 +140,7 @@ namespace ArchentsIT.Controllers
         [HttpGet]
         public ActionResult Login()
         {
-            return View();
+                return View();
         }
         // Logout Employee
         public ActionResult Logout()
@@ -398,6 +400,7 @@ namespace ArchentsIT.Controllers
         [HttpGet]
         public ActionResult GetEmployeeRecords()
         {
+            ViewBag.successfully = TempData["Successfully"];
          ViewBag.successaddticket=TempData["NewTicketCrated"];
         //  var result = db.UserRegisters.FirstOrDefault(x => x.Id == User.Identity.GetUserId());
 
@@ -413,13 +416,59 @@ namespace ArchentsIT.Controllers
             }
                 return View(result);
         }
-      /*  [HttpGet]
-        public ActionResult Getlist()
-        {
-            var result = db.RaiseTickets.ToList();
-            return View(result);
-        }*/
+        /*  [HttpGet]
+          public ActionResult Getlist()
+          {
+              var result = db.RaiseTickets.ToList();
+              return View(result);
+          }*/
 
+        [HttpGet]
+        public ActionResult Profile()
+        {
+            var result11 = db.UserRegisters.Where(x => x.Email == System.Web.HttpContext.Current.User.Identity.Name).FirstOrDefault().EmpID;
+            var Data=db.UserRegisters.FirstOrDefault(x=>x.EmpID==result11);
+
+
+            return View(Data);
+        }
+        [HttpPost]
+        public ActionResult Profile(UserRegister user)
+        {
+            if (user != null)
+            {
+                var result=db.UserRegisters.FirstOrDefault(x=>x.Email== user.Email);
+                if (result.RoleType == 2)
+                {
+                    if (result != null)
+                    {
+                        result.FirstName = user.FirstName;
+                        result.LastName = user.LastName;
+                        result.Email = user.Email;
+                        result.Designation = user.Designation;
+                        result.Phone_Number = user.Phone_Number;
+                        db.SaveChanges();
+                       TempData["Successfully"] = "Your Profile Update Successfully";
+                        return RedirectToAction("GetEmployeeRecords", "UserRegister");
+
+                    }
+                }
+                else
+                {
+                    result.FirstName = user.FirstName;
+                    result.LastName = user.LastName;
+                    result.Email = user.Email;
+                    result.Designation = user.Designation;
+                    result.Phone_Number = user.Phone_Number;
+                    db.SaveChanges();
+                    TempData["Successfully"] = "Your Profile Update Successfully";
+                    return RedirectToAction("Getallemployees", "Admin");
+                }
+                
+            }
+            return View();
+        }
 
     }
+   
 }
