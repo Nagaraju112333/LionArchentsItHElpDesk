@@ -43,11 +43,8 @@
         </div>
         <div class="maindiv">
             @using (Html.BeginForm())
-
-
-
             {
-                @Html.AntiForgeryToken()
+                @*@Html.AntiForgeryToken()*@
 
                 <div class="form-horizontal">
 
@@ -64,7 +61,7 @@
                         <div class="form-group-lg  " style="position:relative">
                             @Html.DropDownListFor(m => m.Issue_Type, ViewBag.CatList as SelectList, "-- Issue Type--", new { @class = "form-control w-50",@id="IssueTypeId" })
                             <i class="bi bi-caret-down-fill"id="Issue_Type"></i>
-                            @Html.ValidationMessageFor(model => model.Issue_Type, "", new { @class = "text-danger" })
+                          @*  @Html.ValidationMessageFor(model => model.Issue_Type, "", new { @class = "text-danger" })*@
                           
                             <div id="dvPassport">
                                 Approval EmailID:

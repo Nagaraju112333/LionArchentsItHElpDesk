@@ -19,7 +19,6 @@ using System.Runtime.Remoting.Services;
 namespace ArchentsIT.Controllers
 {
     // original
-
     public class UserRegisterController : Controller
     {
         // GET: UserRegister
@@ -145,6 +144,7 @@ namespace ArchentsIT.Controllers
         // Login View
         [HttpGet]
         public ActionResult Login()
+        
         {
                 return View();
         }
@@ -159,7 +159,6 @@ namespace ArchentsIT.Controllers
         /*[ValidateAntiForgeryToken]*/
         public ActionResult Login(UserLogin user)
        {
-           
                 string message = "";
                 /* var result = db.UserRegisters.Where(a => a.Email == user.EmailID && a.Password == user.Password).FirstOrDefault();
                  if (result != null)
@@ -224,7 +223,6 @@ namespace ArchentsIT.Controllers
         {
             try
             {
-
                 var otpsentsuccessfully = TempData["OtpVerifySuccessfully is"];
                 var email = TempData["Email"];
                 var result = db.UserRegisters.FirstOrDefault(x => x.Email == email);
@@ -475,7 +473,7 @@ namespace ArchentsIT.Controllers
                         result.Designation = user.Designation;
                         result.Phone_Number = user.Phone_Number;
                         db.SaveChanges();
-                       TempData["Successfully"] = "Your Profile Update Successfully";
+                        TempData["Successfully"] = "Your Profile Update Successfully";
                         return RedirectToAction("GetEmployeeRecords", "UserRegister");
 
                     }

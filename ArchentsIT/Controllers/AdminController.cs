@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.Ajax.Utilities;
 using System.ComponentModel;
+using System.Drawing;
+
 namespace ArchentsIT.Controllers
 {
     public class AdminController : Controller
@@ -24,41 +26,58 @@ namespace ArchentsIT.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Getallemployees(RaiseTicket rai )
+        public ActionResult Getallemployees(RaiseTicket rai)
         {
-
-            var result=db.RaiseTickets.Where(x => x.Status== rai.Status.ToString()).ToList();
-            var priarity = db.RaiseTickets.Where(x => x.priarity ==rai.priarity).ToList();
-            var bothdetails=db.RaiseTickets.OrderBy(x=>x.Status==rai.Status).ThenBy(x=>x.priarity==rai.priarity).ToList();
-            if (result.Count!=0)
+            TempData["priarty"] = rai.priarity;
+            TempData["status"] = rai.Status;
+            if(!string.IsNullOrEmpty(rai.Status) && !string.IsNullOrEmpty(rai.priarity))
             {
-                TempData["StatusDetails"] = result;
-                ViewBag.data2 = result;
-                Session["data"] = result;
-            }
-            else if (bothdetails != null)
-            {
+                var bothdetails = db.RaiseTickets.Where(x => x.Status == rai.Status && x.priarity==rai.priarity).ToList();
                 TempData["statusandpriarity"] = bothdetails;
+                return RedirectToAction("Getallemployees", "Admin");
             }
-            else
-            {
 
-                TempData["Priaroty"] = priarity;
-            }
+            else if (!string.IsNullOrEmpty(rai.Status))
+            {
+                var result = db.RaiseTickets.Where(x => x.Status == rai.Status.ToString()).ToList();
+               
+                if (result!=null ||result.Count==0)
+                {
+                    TempData["StatusDetails"] = result;
+                    ViewBag.data2 = result;
+                    Session["data"] = result;
+                    return RedirectToAction("Getallemployees", "Admin");
+
+                }
+
               
+            }
+            else if(!string.IsNullOrEmpty(rai.priarity))
+            {
+                var priarity = db.RaiseTickets.Where(x => x.priarity == rai.priarity).ToList();
+                TempData["Priaroty"] = priarity;
+                return RedirectToAction("Getallemployees", "Admin");
+
+            }
+           
             return RedirectToAction("Getallemployees", "Admin");
+
+
+
+
+
         }
         [HttpPost]
         public ActionResult StatusFilters(RaiseTicket tai)
         {
             return View();
         }
-       
-
-       
         [HttpGet]
         public ActionResult Getallemployees()
-        {
+       {
+ 
+            ViewBag.priaority = TempData["priarty"];
+            ViewBag.Status = TempData["status"];
             ViewBag.successfully = TempData["Successfully"];
             ViewBag.filter = TempData["StatusDetails"];
 
@@ -66,8 +85,9 @@ namespace ArchentsIT.Controllers
             ViewBag.statusandpriarity = TempData["statusandpriarity"];
             Session["AdminLogin"] = db.UserRegisters.Where(x => x.Email == System.Web.HttpContext.Current.User.Identity.Name).FirstOrDefault().FirstName;
 
-            var result =db.RaiseTickets.ToList();    
-            return View(result);
+            var result =db.RaiseTickets.ToList(); 
+            ViewBag.result = result;    
+            return View();
         }
         public class Status
         {
